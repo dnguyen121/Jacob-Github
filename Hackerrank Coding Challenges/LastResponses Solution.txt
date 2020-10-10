@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+import java.util.regex.*;
+
+public class Solution {
+    private static final Scanner scan = new Scanner(System.in);
+    
+    public static void main(String args[]) throws Exception {
+        // read the string filename
+        long sumByte = 0;
+        int count = 0;
+        String filename;
+        filename = scan.nextLine();
+        File originalFile = new File(filename);
+        Scanner input = new Scanner(originalFile);
+        while(input.hasNextLine()){
+            String line = input.nextLine();
+            System.out.println(line);
+            String number = line.substring(line.lastIndexOf(" ")+1);
+            int value = Integer.parseInt(number);
+            if(value > 5000){
+                sumByte += value;
+                count++;
+                System.out.println(count+ " "+ sumByte);
+            }
+        }
+            String filenam= "bytes_"+filename;
+            FileWriter fw = new FileWriter(filenam,true);
+            fw.write(count+"\n"+sumByte);
+            fw.close();
+   
+        
+    }
+}

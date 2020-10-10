@@ -1,0 +1,82 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+
+class Result {
+
+    /*
+     * Complete the 'optimalPoint' function below.
+     *
+     * The function is expected to return an INTEGER.
+     * The function accepts following parameters:
+     *  1. INTEGER_ARRAY magic
+     *  2. INTEGER_ARRAY dist
+     */
+
+    public static int optimalPoint(List<Integer> magic, List<Integer> dist) {
+    // Write your code here
+
+        for(int i = 0; i < magic.size();i++){
+            if(i == 0){
+                if(startZero(magic, dist, 0, magic.get(0))){
+                    return 0;
+                }
+            } else {
+                if(startNotZero(magic, dist, i, magic.get(i),i)){
+                    return i;
+                }
+            }
+            
+        }
+        return -1;
+    }
+    public static boolean startZero(List<Integer> magic, List<Integer> dist, int mIndex,int magicLeft){
+        while(mIndex != magic.size()){
+            if(magicLeft-dist.get(mIndex)>= 0){
+                if(mIndex < magic.size()-1){
+                    magicLeft = magicLeft-dist.get(mIndex)+magic.get(mIndex+1);
+                } else {
+                    magicLeft = magicLeft-dist.get(mIndex);
+                }
+                mIndex++;
+            }else {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+
+    public static boolean startNotZero(List<Integer> magic, List<Integer> dist, int mIndex,int magicLeft,int startIndex){
+        while(mIndex!= magic.size()){
+            if(magicLeft-dist.get(mIndex)>=0){
+                if(mIndex < magic.size()-1){
+                    magicLeft = magicLeft-dist.get(mIndex)+magic.get(mIndex+1);
+                }             
+                mIndex++;
+            }else{
+                return false;
+            }
+        }
+        mIndex = 0;
+        while(mIndex!= startIndex-1){
+            if(magicLeft-dist.get(mIndex)>= 0){
+                magicLeft = magicLeft-dist.get(mIndex)+ magic.get(mIndex+1);
+                mIndex++;
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+}
