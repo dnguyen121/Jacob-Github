@@ -1,0 +1,334 @@
+/* for all pages */
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    height: 80%;
+}
+
+body{
+    font-family: 'Segoe UI', sans-serif;;
+    font-size: 1rem;
+    line-height: 1.6;
+    height: 100%;
+    background-image: linear-gradient(to right, #3ab5b0 0%, #3d99be 31%, #56317a 100%);
+}
+
+
+.button:focus{
+    outline: none;
+}
+
+
+
+
+
+
+/* Login page */
+.login-wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form{
+    width: 350px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    padding: 2rem;
+    background: #ffffff;
+}
+
+.login-form-input{
+    background: #fafafa;
+    border: 1px solid #eeeeee;
+    padding: 12px;
+    width: 100%;
+}
+
+.login-form-group{
+    margin-bottom: 1rem;
+}
+
+.login-form-button{
+    background: #69d2e7;
+    border: 1px;
+    border-radius: 15px;
+    padding: 10px;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: larger;
+}
+
+.login-form-button:hover{
+    background: #0f44d6;
+}
+
+.login-form-header{
+    text-align: center;
+    margin-bottom : 2rem;
+}
+
+
+
+
+
+/* for index page */
+h1{
+    text-align: center;
+    margin: 0 20% 0 20%;
+    
+}
+
+.index-result{
+    text-align: center;
+    margin: 0 20% 5% 20%;
+}
+
+.index-button{
+    text-align: center;
+    margin: 0 40% 5% 40%;
+    border-radius: 13px;
+}
+
+.index-RPS{
+    display: inline-block;
+    margin: 0 0% 0 12%;
+}
+
+.index-outter{
+    margin: auto;
+    width: 50%;
+}
+
+.index-button-play{
+    background: #f80303;
+    border: 1px;
+    border-radius: 15px;
+    padding: 10px;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: larger;
+}
+
+.index-button-play:hover{
+    background: #c02a2a;
+}
+
+.index-button-logout{
+    background:#69d2e7;
+    border: 1px ;
+    border-radius: 15px;
+    padding: 10px;
+    overflow: auto;
+    text-transform: uppercase;
+    font-size: larger;
+    position: fixed;
+    top: 60px;
+    left: 20px;
+}
+
+.index-button-logout:hover{
+    background: #0f44d6;
+}
+
+.index-button-ranking{
+    background: #f2f55b;
+    border: 1px ;
+    border-radius: 15px;
+    padding: 10px;
+    overflow: auto;
+    text-transform: uppercase;
+    font-size: larger;
+    position: fixed;
+    top: 10px;
+    left: 20px;
+
+}
+
+.index-button-ranking:hover{
+    background: #bbbd3f;
+}
+
+.index-welcome-user{
+  text-align: center;
+  font-size: 50px;
+  animation-name: user;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 10s;
+  animation-fill-mode: forwards;
+}
+@keyframes user{
+    0%{ color: violet}
+    15%{color: indigo}
+    30%{color: blue}
+    45%{color: green}
+    60%{color: yellow}
+    75%{color: orange}
+    90%{color: red}
+    100%{color: violet}
+}
+
+#index-rock, #index-paper, #index-scissors{
+    position: relative;
+    left: 15px;
+    display: inline-block;
+    text-align: center;
+}
+
+
+/* for ranking page */
+.rank-leadingboard{
+    text-align: center;
+    margin: 5% auto;
+    background-image: linear-gradient(to left, violet 0%, green 45%, yellow 60%, orange 75%, red 100%);
+    width: 50%;
+    border-radius: 20px;
+    position: relative;
+    top: -20px;
+ 
+}
+
+
+
+.rank-button-logout{
+    background:#69d2e7;
+    border: 1px ;
+    border-radius: 15px;
+    padding: 10px;
+    overflow: auto;
+    text-transform: uppercase;
+    font-size: larger;
+    position: fixed;
+    top: 60px;
+    left: 20px;
+}
+
+.rank-button-logout:hover{
+    background: #0f44d6;
+}
+
+.rank-button-back{
+    background:#f44336;
+    border: 1px ;
+    border-radius: 15px;
+    padding: 10px;
+    overflow: auto;
+    text-transform: uppercase;
+    font-size: larger;
+    position: fixed;
+    top: 10px;
+    left: 20px;
+}
+
+.rank-button-back:hover{
+    background: #c02a2a;
+}
+
+.rank-cup img{
+    width: 20%;
+    height: 20%;
+}
+
+.rank-cup{
+    position: relative;
+    animation: cup 3s linear infinite;
+    margin-left: 300px;
+    margin-right: 300px;
+    top: -30px;
+}
+
+@keyframes cup{
+    100%{
+        transform: rotateY(360deg);
+    }
+}
+
+.rank-winner{
+    position: relative;
+    animation-name: congrat;
+    animation-timing-function: linear;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    text-align: center;
+    color:rgb(65, 241, 11);
+}
+
+@keyframes congrat{
+    0%{top: -300px; opacity: 0;}
+    100%{top: -50px; opacity: 1;}
+}
+
+.rank-win{
+    animation-name: win;
+    animation-timing-function: linear;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    text-align: center;
+    color: rgb(236, 48, 227);
+    position: relative;
+    bottom: 70px;
+}
+
+@keyframes win{
+    0%{opacity: 0;}
+    100%{transform: rotateY(360deg);opacity: 1;}
+}
+
+
+
+
+/* This section for register page only! */
+
+.register-form-button{
+    background: #f18a29;
+    border: 1px;
+    border-radius: 15px;
+    padding: 10px;
+    width: 100%;
+    text-transform: uppercase;
+    font-size: larger;
+}
+
+.register-form-button:hover{
+    background: #e94d04;
+}
+
+/* Add padding to containers */
+.container2 {
+padding: 16px;
+background-color: white;
+}
+    
+ /* Full-width input fields */
+.register-form-input {
+width: 100%;
+padding: 15px;
+margin: 5px 0 22px 0;
+display: inline-block;
+border: none;
+background: #f1f1f1;
+}
+    
+.register-form-input:focus {
+background-color: #ddd;
+outline: none;
+}
+    
+/* Overwrite default styles of hr */
+.hr1 {
+border: 1px solid #f1f1f1;
+margin-bottom: 25px;
+}
+    
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+background-color: #f1f1f1;
+text-align: center;
+}

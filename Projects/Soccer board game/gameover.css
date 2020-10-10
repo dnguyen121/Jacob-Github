@@ -1,0 +1,97 @@
+h1 {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 6em;
+    letter-spacing: 5px;
+    position: relative;
+    top: -40px;
+}
+img.ball {
+    height: 20%;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    display: block;
+}
+body {
+    animation: colorchange 50s;
+    -webkit-animation: colorchange 100s;
+}
+
+@keyframes colorchange {
+    0%   {background: red;}
+    25%  {background: yellow;}
+    50%  {background: blue;}
+    75%  {background: green;}
+    100% {background: red;}
+}
+
+/* Safari and Chrome */
+@-webkit-keyframes colorchange {
+    0%   {background: red;}
+    25%  {background: yellow;}
+    50%  {background: blue;}
+    75%  {background: green;}
+    100% {background: red;}
+}
+.button1 {
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px rgb(15, 111, 167);
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+
+.button1:hover {background-color: #3e8e41}
+
+.button1:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.button2 {
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: rgb(180, 48, 152);
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px rgb(15, 111, 167);
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+.button2:hover {
+    background-color: #b213e2;
+    transform: rotateY(360deg);
+}
+
+.button2:active {
+    background-color: #b213e2;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.button{
+    position: relative;
+    bottom: 60px;
+    height: 100px;
+}
+
+a{
+    text-decoration: none;
+}
