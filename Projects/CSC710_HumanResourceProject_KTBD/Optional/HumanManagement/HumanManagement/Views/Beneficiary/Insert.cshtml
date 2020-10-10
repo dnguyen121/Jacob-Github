@@ -1,0 +1,93 @@
+﻿@using HumanManagement.Models;
+@using HumanManagement.Utils;
+@model BeneficiaryModel
+@{
+    string action = ViewBag.EditMode == 1 ? "Edit" : "Insert";
+    ViewBag.Title = $"{action} Beneficiary";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h4>@ViewBag.Title</h4>
+        <div class="row">
+            @using (Html.BeginForm(action, "Beneficiary", FormMethod.Post, new { @class = "row col-12 padding-0" }))
+            {
+                if (ViewBag.EditMode == 1)
+                {
+                    @Html.HiddenFor(q => q.BeneficiaryId)
+                }
+                <div class="col-md-6 form-group mt-1">
+                    @Html.LabelFor(m => m.BeneficiaryFName)
+                    @Html.TextBoxFor(m => m.BeneficiaryFName, new { @class = "form-control w-75" })
+                    <div class="small">@Html.ValidationMessageFor(model => model.BeneficiaryFName, "", new { @class = "text-danger" }) &#160; </div>
+                </div>
+                <div class="col-md-6 form-group mt-1">
+                    @Html.LabelFor(m => m.BeneficiaryLName)
+                    @Html.TextBoxFor(m => m.BeneficiaryLName, new { @class = "form-control w-75" })
+                    <div class="small">@Html.ValidationMessageFor(model => model.BeneficiaryLName, "", new { @class = "text-danger" }) &#160; </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-6 form-group mt-1">
+                            @Html.LabelFor(m => m.BeneficiaryRelationship)
+                            @Html.SelectList(m => m.BeneficiaryRelationship, (object)ViewBag.RelationList, "RelationId", "RelationName", "form-control w-75")
+                            <div class="small">@Html.ValidationMessageFor(model => model.BeneficiaryRelationship, "", new { @class = "text-danger" }) &#160; </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-6 form-group mt-1">
+                            @Html.LabelFor(m => m.BeneficiaryContact)
+                            @Html.TextBoxFor(m => m.BeneficiaryContact, new { @class = "form-control w-75" })
+                            <div class="small">@Html.ValidationMessageFor(model => model.BeneficiaryContact, "", new { @class = "text-danger" }) &#160; </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 form-group mt-2 border-top">
+                    <h4 class="mt-2">Address</h4>
+                    <div class="row">
+                        <div class="col-md-6 form-group mt-1">
+                            @Html.LabelFor(m => m.BeneficiaryAddressLine)
+                            @Html.TextBoxFor(m => m.BeneficiaryAddressLine, new { @class = "form-control w-75" })
+                            <div class="small">@Html.ValidationMessageFor(model => model.BeneficiaryAddressLine, "", new { @class = "text-danger" }) &#160; </div>
+                        </div>
+                        <div class="col-md-6 form-group mt-1">
+                            @Html.LabelFor(m => m.BeneficiaryCity)
+                            @Html.TextBoxFor(m => m.BeneficiaryCity, new { @class = "form-control w-75" })
+                            <div class="small">@Html.ValidationMessageFor(model => model.BeneficiaryCity, "", new { @class = "text-danger" }) &#160; </div>
+                        </div>
+                        <div class="col-md-6 form-group mt-1">
+                            @Html.LabelFor(m => m.BeneficiaryState)
+                            @Html.SelectList(m => m.BeneficiaryState, (object)ViewBag.StateList, "StateCode", "StateName", "form-control w-75")
+                            <div class="small">@Html.ValidationMessageFor(model => model.BeneficiaryState, "", new { @class = "text-danger" }) &#160; </div>
+                        </div>
+                        <div class="col-md-6 form-group mt-1">
+                            @Html.LabelFor(m => m.BeneficiaryZipCode)
+                            @Html.TextBoxFor(m => m.BeneficiaryZipCode, new { @class = "form-control w-75" })
+                            <div class="small">@Html.ValidationMessageFor(model => model.BeneficiaryZipCode, "", new { @class = "text-danger" }) &#160; </div>
+                        </div>
+                        <div class="col-md-6 form-group mt-1">
+                            @Html.LabelFor(m => m.BeneficiaryCountry)
+                            @Html.TextBoxFor(m => m.BeneficiaryCountry, new { @class = "form-control w-75", disable = "disabled" })
+                            <div class="small">@Html.ValidationMessageFor(model => model.BeneficiaryCountry, "", new { @class = "text-danger" }) &#160; </div>
+                        </div>
+                        <div class="col-md-6 form-group mt-1">
+                            @Html.LabelFor(m => m.BeneficiaryEmail)
+                            @Html.TextBoxFor(m => m.BeneficiaryEmail, new { @class = "form-control w-75" })
+                            <div class="small">@Html.ValidationMessageFor(model => model.BeneficiaryEmail, "", new { @class = "text-danger" }) &#160; </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 form-group mt-1">
+                            <button type="submit" class="btn btn-primary w-100">Add</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

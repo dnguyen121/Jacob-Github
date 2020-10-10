@@ -1,0 +1,79 @@
+﻿@using HumanManagement.Models;
+@{
+    ViewBag.Title = "HR Management";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="w-100 text-right">
+    <a href="~/Employee/Insert" class="btn btn-primary">Create</a>
+</div>
+<table class="w-100 table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>SSN</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Sex</th>
+            <th>Marital Status</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Email</th>
+            <th>Superior Name</th>
+            <th>Department</th>
+            <th>Grad Level</th>
+            <th>Job</th>
+            <th>Working Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (EmployeeModel employee in ViewBag.List)
+        {
+            <tr>
+                <td>
+                    @employee.Employee_id
+                </td>
+                <td>
+                    @employee.Employee_SSN
+                </td>
+                <td>
+                    @employee.Employee_name
+                </td>
+                <td>
+                    @employee.Employee_dob.ToString("dd MMM yyyy")
+                </td>
+                <td>
+                    @employee.Employee_sex
+                </td>
+                <td>
+                    @employee.Employee_maritalStatus
+                </td>
+                <td>
+                    @employee.Employee_phone
+                </td>
+                <td>
+                    @employee.Employee_address
+                </td>
+                <td>
+                    @employee.Employee_mail
+                </td>
+                <td>
+                    @employee.Employee_superiorName
+                </td>
+                <td>
+                    @employee.DeptName
+                </td>
+                <td>
+                    @employee.GradLevel
+                </td>
+                <td>
+                    @employee.Job
+                </td>
+                <td>
+                    @employee.WorkingStatus
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Treant")
+    <link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+</head>
+<body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <span class="fa fa-bars d-block w-25" id="open-slide"> @ViewBag.Title</span>
+            <div class="text-right w-75">
+                Hello @User.Identity.Name | <a href="~/Account/LogOff">Log Out</a>
+            </div>
+        </nav>
+    }
+    <div id="left-side" class="fixed-top h-100 bg-site text-white p-3 d-none">
+        <div class="w-100 text-right">
+            <a class="fa fa-close" id="close-slide"></a>
+        </div>
+        <a href="~/Home/Index" class="d-block fa fa-puzzle-piece p-2 text-white">   Home</a>
+        @if (User.IsInRole("admin"))
+        {
+            <a href="~/Employee/manager" class="d-block fa fa-user-secret p-2 text-white">   HR Management</a>
+            <a href="~/OverTime/manager" class="d-block fa fa-times-circle p-2 text-white">   Overtime</a>
+        }
+        <a href="~/Employee/Index" class="d-block fa fa-user-circle p-2 text-white">   Personal Infomation</a>
+        <a href="~/Career/Index" class="d-block fa fa-building p-2 text-white">   Career</a>
+        <a href="~/WeeklySalary/Index" class="d-block fa fa-money p-2 text-white">   Week Salary</a>
+        <a href="~/TimeOff/Index" class="d-block fa fa-bed p-2 text-white">   Time Off</a>
+        <a href="~/Origization/Index" class="d-block fa fa-sitemap p-2 text-white">   Organization</a>
+        <a href="~/Beneficiary/Index" class="d-block fa fa-group p-2 text-white">   Relationship</a>
+        <a href="~/Manage/ChangePassword" class="d-block fa fa-cogs p-2 text-white">   Setting</a>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>Human Management</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $("#open-slide").click(function () {
+            $("#left-side").removeClass("d-none");
+            $("#left-side").css("width", "0%");
+            $("#left-side").animate({
+                width: "25%"
+            }, 200);
+        });
+        $("#close-slide").click(function () {
+            $("#left-side").animate({
+                width: "0%"
+            }, 200, function () {
+                $("#left-side").addClass("d-none");
+            });
+        });
+    </script>
+</body>
+</html>

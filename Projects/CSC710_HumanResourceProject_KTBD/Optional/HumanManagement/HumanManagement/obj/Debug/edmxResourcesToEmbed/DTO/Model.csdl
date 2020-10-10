@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HumanManagementDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HumanManagementDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BENEFICIARies" EntityType="HumanManagementDBModel.BENEFICIARY" />
+    <EntitySet Name="BONUS" EntityType="HumanManagementDBModel.BONU" />
+    <EntitySet Name="DEPARTMENTs" EntityType="HumanManagementDBModel.DEPARTMENT" />
+    <EntitySet Name="EMPLOYEEs" EntityType="HumanManagementDBModel.EMPLOYEE" />
+    <EntitySet Name="GRADELEVELs" EntityType="HumanManagementDBModel.GRADELEVEL" />
+    <EntitySet Name="HOLIDAYSCHEDULEs" EntityType="HumanManagementDBModel.HOLIDAYSCHEDULE" />
+    <EntitySet Name="JOBs" EntityType="HumanManagementDBModel.JOB" />
+    <EntitySet Name="OVERTIMEs" EntityType="HumanManagementDBModel.OVERTIME" />
+    <EntitySet Name="REASON_TIMEOFF" EntityType="HumanManagementDBModel.REASON_TIMEOFF" />
+    <EntitySet Name="RELATIONs" EntityType="HumanManagementDBModel.RELATION" />
+    <EntitySet Name="SKILLs" EntityType="HumanManagementDBModel.SKILL" />
+    <EntitySet Name="STATES" EntityType="HumanManagementDBModel.STATE" />
+    <EntitySet Name="TIMEOFFs" EntityType="HumanManagementDBModel.TIMEOFF" />
+    <EntitySet Name="TYPE_TIMEOFF" EntityType="HumanManagementDBModel.TYPE_TIMEOFF" />
+    <EntitySet Name="WEEKLYSALARies" EntityType="HumanManagementDBModel.WEEKLYSALARY" />
+    <EntitySet Name="WORKINGSTATUS" EntityType="HumanManagementDBModel.WORKINGSTATU" />
+    <AssociationSet Name="FK__BENEFICIA__benef__6754599E" Association="HumanManagementDBModel.FK__BENEFICIA__benef__6754599E">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="BENEFICIARY" EntitySet="BENEFICIARies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BENEFICIA__benef__68487DD7" Association="HumanManagementDBModel.FK__BENEFICIA__benef__68487DD7">
+      <End Role="RELATION" EntitySet="RELATIONs" />
+      <End Role="BENEFICIARY" EntitySet="BENEFICIARies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BENEFICIA__benef__693CA210" Association="HumanManagementDBModel.FK__BENEFICIA__benef__693CA210">
+      <End Role="STATE" EntitySet="STATES" />
+      <End Role="BENEFICIARY" EntitySet="BENEFICIARies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BONUS__bonus_gra__5CD6CB2B" Association="HumanManagementDBModel.FK__BONUS__bonus_gra__5CD6CB2B">
+      <End Role="GRADELEVEL" EntitySet="GRADELEVELs" />
+      <End Role="BONU" EntitySet="BONUS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMPLOYEE__employ__4222D4EF" Association="HumanManagementDBModel.FK__EMPLOYEE__employ__4222D4EF">
+      <End Role="DEPARTMENT" EntitySet="DEPARTMENTs" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMPLOYEE__employ__4316F928" Association="HumanManagementDBModel.FK__EMPLOYEE__employ__4316F928">
+      <End Role="GRADELEVEL" EntitySet="GRADELEVELs" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMPLOYEE__employ__440B1D61" Association="HumanManagementDBModel.FK__EMPLOYEE__employ__440B1D61">
+      <End Role="JOB" EntitySet="JOBs" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMPLOYEE__employ__44FF419A" Association="HumanManagementDBModel.FK__EMPLOYEE__employ__44FF419A">
+      <End Role="WORKINGSTATU" EntitySet="WORKINGSTATUS" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OVERTIME__overti__5FB337D6" Association="HumanManagementDBModel.FK__OVERTIME__overti__5FB337D6">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="OVERTIME" EntitySet="OVERTIMEs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TIMEOFF__timeoff__4F7CD00D" Association="HumanManagementDBModel.FK__TIMEOFF__timeoff__4F7CD00D">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="TIMEOFF" EntitySet="TIMEOFFs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__WEEKLYSAL__weekl__59FA5E80" Association="HumanManagementDBModel.FK__WEEKLYSAL__weekl__59FA5E80">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="WEEKLYSALARY" EntitySet="WEEKLYSALARies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__JOB__job_gradelv__3A81B327" Association="HumanManagementDBModel.FK__JOB__job_gradelv__3A81B327">
+      <End Role="GRADELEVEL" EntitySet="GRADELEVELs" />
+      <End Role="JOB" EntitySet="JOBs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TIMEOFF__timeoff__5070F446" Association="HumanManagementDBModel.FK__TIMEOFF__timeoff__5070F446">
+      <End Role="REASON_TIMEOFF" EntitySet="REASON_TIMEOFF" />
+      <End Role="TIMEOFF" EntitySet="TIMEOFFs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TIMEOFF__timeoff__5165187F" Association="HumanManagementDBModel.FK__TIMEOFF__timeoff__5165187F">
+      <End Role="TYPE_TIMEOFF" EntitySet="TYPE_TIMEOFF" />
+      <End Role="TIMEOFF" EntitySet="TIMEOFFs" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_HAS_SKILL" Association="HumanManagementDBModel.EMP_HAS_SKILL">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="SKILL" EntitySet="SKILLs" />
+    </AssociationSet>
+    <AssociationSet Name="EMP_WORK_ON_HOLIDAY" Association="HumanManagementDBModel.EMP_WORK_ON_HOLIDAY">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+      <End Role="HOLIDAYSCHEDULE" EntitySet="HOLIDAYSCHEDULEs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BENEFICIARY">
+    <Key>
+      <PropertyRef Name="beneficiary_id" />
+    </Key>
+    <Property Name="beneficiary_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="beneficiary_fName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="beneficiary_lName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="beneficiary_relationship" Type="Int32" Nullable="false" />
+    <Property Name="beneficiary_contact" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="beneficiary_addressLine" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="beneficiary_city" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="beneficiary_state" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="beneficiary_zipCode" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+    <Property Name="beneficiary_country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="beneficiary_email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="beneficiary_emp_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="HumanManagementDBModel.FK__BENEFICIA__benef__6754599E" FromRole="BENEFICIARY" ToRole="EMPLOYEE" />
+    <NavigationProperty Name="RELATION" Relationship="HumanManagementDBModel.FK__BENEFICIA__benef__68487DD7" FromRole="BENEFICIARY" ToRole="RELATION" />
+    <NavigationProperty Name="STATE" Relationship="HumanManagementDBModel.FK__BENEFICIA__benef__693CA210" FromRole="BENEFICIARY" ToRole="STATE" />
+  </EntityType>
+  <EntityType Name="BONU">
+    <Key>
+      <PropertyRef Name="bonus_id" />
+    </Key>
+    <Property Name="bonus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="bonus_gradelv_id" Type="Int32" Nullable="false" />
+    <Property Name="bonus_percent" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GRADELEVEL" Relationship="HumanManagementDBModel.FK__BONUS__bonus_gra__5CD6CB2B" FromRole="BONU" ToRole="GRADELEVEL" />
+  </EntityType>
+  <EntityType Name="DEPARTMENT">
+    <Key>
+      <PropertyRef Name="department_id" />
+    </Key>
+    <Property Name="department_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="department_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EMPLOYEEs" Relationship="HumanManagementDBModel.FK__EMPLOYEE__employ__4222D4EF" FromRole="DEPARTMENT" ToRole="EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="employee_id" />
+    </Key>
+    <Property Name="employee_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="employee_SSN" Type="String" Nullable="false" MaxLength="9" FixedLength="true" Unicode="false" />
+    <Property Name="employee_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="employee_dob" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="employee_sex" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="employee_maritalStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="employee_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="employee_phone" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="employee_address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="employee_mail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="employee_hireDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="employee_superiorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="employee_balances" Type="Int32" Nullable="false" />
+    <Property Name="employee_dept_id" Type="Int32" Nullable="false" />
+    <Property Name="employee_gralv_id" Type="Int32" Nullable="false" />
+    <Property Name="employee_jb_id" Type="Int32" Nullable="false" />
+    <Property Name="employee_workstt_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BENEFICIARies" Relationship="HumanManagementDBModel.FK__BENEFICIA__benef__6754599E" FromRole="EMPLOYEE" ToRole="BENEFICIARY" />
+    <NavigationProperty Name="DEPARTMENT" Relationship="HumanManagementDBModel.FK__EMPLOYEE__employ__4222D4EF" FromRole="EMPLOYEE" ToRole="DEPARTMENT" />
+    <NavigationProperty Name="GRADELEVEL" Relationship="HumanManagementDBModel.FK__EMPLOYEE__employ__4316F928" FromRole="EMPLOYEE" ToRole="GRADELEVEL" />
+    <NavigationProperty Name="JOB" Relationship="HumanManagementDBModel.FK__EMPLOYEE__employ__440B1D61" FromRole="EMPLOYEE" ToRole="JOB" />
+    <NavigationProperty Name="WORKINGSTATU" Relationship="HumanManagementDBModel.FK__EMPLOYEE__employ__44FF419A" FromRole="EMPLOYEE" ToRole="WORKINGSTATU" />
+    <NavigationProperty Name="OVERTIMEs" Relationship="HumanManagementDBModel.FK__OVERTIME__overti__5FB337D6" FromRole="EMPLOYEE" ToRole="OVERTIME" />
+    <NavigationProperty Name="TIMEOFFs" Relationship="HumanManagementDBModel.FK__TIMEOFF__timeoff__4F7CD00D" FromRole="EMPLOYEE" ToRole="TIMEOFF" />
+    <NavigationProperty Name="WEEKLYSALARies" Relationship="HumanManagementDBModel.FK__WEEKLYSAL__weekl__59FA5E80" FromRole="EMPLOYEE" ToRole="WEEKLYSALARY" />
+    <NavigationProperty Name="SKILLs" Relationship="HumanManagementDBModel.EMP_HAS_SKILL" FromRole="EMPLOYEE" ToRole="SKILL" />
+    <NavigationProperty Name="HOLIDAYSCHEDULEs" Relationship="HumanManagementDBModel.EMP_WORK_ON_HOLIDAY" FromRole="EMPLOYEE" ToRole="HOLIDAYSCHEDULE" />
+  </EntityType>
+  <EntityType Name="GRADELEVEL">
+    <Key>
+      <PropertyRef Name="gradelevel_id" />
+    </Key>
+    <Property Name="gradelevel_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="gradelevel_payRate" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BONUS" Relationship="HumanManagementDBModel.FK__BONUS__bonus_gra__5CD6CB2B" FromRole="GRADELEVEL" ToRole="BONU" />
+    <NavigationProperty Name="EMPLOYEEs" Relationship="HumanManagementDBModel.FK__EMPLOYEE__employ__4316F928" FromRole="GRADELEVEL" ToRole="EMPLOYEE" />
+    <NavigationProperty Name="JOBs" Relationship="HumanManagementDBModel.FK__JOB__job_gradelv__3A81B327" FromRole="GRADELEVEL" ToRole="JOB" />
+  </EntityType>
+  <EntityType Name="HOLIDAYSCHEDULE">
+    <Key>
+      <PropertyRef Name="holidayschedule_id" />
+    </Key>
+    <Property Name="holidayschedule_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="holidayschedule_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="holidayschedule_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="holidayschedule_hours" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EMPLOYEEs" Relationship="HumanManagementDBModel.EMP_WORK_ON_HOLIDAY" FromRole="HOLIDAYSCHEDULE" ToRole="EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="JOB">
+    <Key>
+      <PropertyRef Name="job_id" />
+    </Key>
+    <Property Name="job_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="job_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="job_gradelv_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EMPLOYEEs" Relationship="HumanManagementDBModel.FK__EMPLOYEE__employ__440B1D61" FromRole="JOB" ToRole="EMPLOYEE" />
+    <NavigationProperty Name="GRADELEVEL" Relationship="HumanManagementDBModel.FK__JOB__job_gradelv__3A81B327" FromRole="JOB" ToRole="GRADELEVEL" />
+  </EntityType>
+  <EntityType Name="OVERTIME">
+    <Key>
+      <PropertyRef Name="overtime_id" />
+    </Key>
+    <Property Name="overtime_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="overtime_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="overtime_hours" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+    <Property Name="overtime_comment" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="overtime_emp_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="HumanManagementDBModel.FK__OVERTIME__overti__5FB337D6" FromRole="OVERTIME" ToRole="EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="REASON_TIMEOFF">
+    <Key>
+      <PropertyRef Name="reason_timeoff_id" />
+    </Key>
+    <Property Name="reason_timeoff_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="reason_timeoff_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TIMEOFFs" Relationship="HumanManagementDBModel.FK__TIMEOFF__timeoff__5070F446" FromRole="REASON_TIMEOFF" ToRole="TIMEOFF" />
+  </EntityType>
+  <EntityType Name="RELATION">
+    <Key>
+      <PropertyRef Name="relation_id" />
+    </Key>
+    <Property Name="relation_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="relation_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BENEFICIARies" Relationship="HumanManagementDBModel.FK__BENEFICIA__benef__68487DD7" FromRole="RELATION" ToRole="BENEFICIARY" />
+  </EntityType>
+  <EntityType Name="SKILL">
+    <Key>
+      <PropertyRef Name="skill_id" />
+    </Key>
+    <Property Name="skill_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="skill_name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EMPLOYEEs" Relationship="HumanManagementDBModel.EMP_HAS_SKILL" FromRole="SKILL" ToRole="EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="STATE">
+    <Key>
+      <PropertyRef Name="state_code" />
+    </Key>
+    <Property Name="state_code" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+    <Property Name="state_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BENEFICIARies" Relationship="HumanManagementDBModel.FK__BENEFICIA__benef__693CA210" FromRole="STATE" ToRole="BENEFICIARY" />
+  </EntityType>
+  <EntityType Name="TIMEOFF">
+    <Key>
+      <PropertyRef Name="timeoff_id" />
+    </Key>
+    <Property Name="timeoff_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="timeoff_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="timeoff_numberOfHours" Type="Decimal" Nullable="false" Precision="3" Scale="2" />
+    <Property Name="timeoff_res_id" Type="Int32" Nullable="false" />
+    <Property Name="timeoff_tpe_id" Type="Int32" Nullable="false" />
+    <Property Name="timeoff_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="timeoff_emp_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="HumanManagementDBModel.FK__TIMEOFF__timeoff__4F7CD00D" FromRole="TIMEOFF" ToRole="EMPLOYEE" />
+    <NavigationProperty Name="REASON_TIMEOFF" Relationship="HumanManagementDBModel.FK__TIMEOFF__timeoff__5070F446" FromRole="TIMEOFF" ToRole="REASON_TIMEOFF" />
+    <NavigationProperty Name="TYPE_TIMEOFF" Relationship="HumanManagementDBModel.FK__TIMEOFF__timeoff__5165187F" FromRole="TIMEOFF" ToRole="TYPE_TIMEOFF" />
+  </EntityType>
+  <EntityType Name="TYPE_TIMEOFF">
+    <Key>
+      <PropertyRef Name="type_timeoff_id" />
+    </Key>
+    <Property Name="type_timeoff_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type_timeoff_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TIMEOFFs" Relationship="HumanManagementDBModel.FK__TIMEOFF__timeoff__5165187F" FromRole="TYPE_TIMEOFF" ToRole="TIMEOFF" />
+  </EntityType>
+  <EntityType Name="WEEKLYSALARY">
+    <Key>
+      <PropertyRef Name="weeklysalary_id" />
+    </Key>
+    <Property Name="weeklysalary_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="weeklysalary_startDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="weeklysalary_endDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="weeklysalary_hours" Type="Int32" Nullable="false" />
+    <Property Name="weeklysalary_emp_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="EMPLOYEE" Relationship="HumanManagementDBModel.FK__WEEKLYSAL__weekl__59FA5E80" FromRole="WEEKLYSALARY" ToRole="EMPLOYEE" />
+  </EntityType>
+  <EntityType Name="WORKINGSTATU">
+    <Key>
+      <PropertyRef Name="workingstatus_id" />
+    </Key>
+    <Property Name="workingstatus_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="workingstatus_name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EMPLOYEEs" Relationship="HumanManagementDBModel.FK__EMPLOYEE__employ__44FF419A" FromRole="WORKINGSTATU" ToRole="EMPLOYEE" />
+  </EntityType>
+  <Association Name="FK__BENEFICIA__benef__6754599E">
+    <End Type="HumanManagementDBModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.BENEFICIARY" Role="BENEFICIARY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="BENEFICIARY">
+        <PropertyRef Name="beneficiary_emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BENEFICIA__benef__68487DD7">
+    <End Type="HumanManagementDBModel.RELATION" Role="RELATION" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.BENEFICIARY" Role="BENEFICIARY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RELATION">
+        <PropertyRef Name="relation_id" />
+      </Principal>
+      <Dependent Role="BENEFICIARY">
+        <PropertyRef Name="beneficiary_relationship" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BENEFICIA__benef__693CA210">
+    <End Type="HumanManagementDBModel.STATE" Role="STATE" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.BENEFICIARY" Role="BENEFICIARY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STATE">
+        <PropertyRef Name="state_code" />
+      </Principal>
+      <Dependent Role="BENEFICIARY">
+        <PropertyRef Name="beneficiary_state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BONUS__bonus_gra__5CD6CB2B">
+    <End Type="HumanManagementDBModel.GRADELEVEL" Role="GRADELEVEL" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.BONU" Role="BONU" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GRADELEVEL">
+        <PropertyRef Name="gradelevel_id" />
+      </Principal>
+      <Dependent Role="BONU">
+        <PropertyRef Name="bonus_gradelv_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMPLOYEE__employ__4222D4EF">
+    <End Type="HumanManagementDBModel.DEPARTMENT" Role="DEPARTMENT" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTMENT">
+        <PropertyRef Name="department_id" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="employee_dept_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMPLOYEE__employ__4316F928">
+    <End Type="HumanManagementDBModel.GRADELEVEL" Role="GRADELEVEL" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GRADELEVEL">
+        <PropertyRef Name="gradelevel_id" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="employee_gralv_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMPLOYEE__employ__440B1D61">
+    <End Type="HumanManagementDBModel.JOB" Role="JOB" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOB">
+        <PropertyRef Name="job_id" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="employee_jb_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMPLOYEE__employ__44FF419A">
+    <End Type="HumanManagementDBModel.WORKINGSTATU" Role="WORKINGSTATU" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WORKINGSTATU">
+        <PropertyRef Name="workingstatus_id" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="employee_workstt_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OVERTIME__overti__5FB337D6">
+    <End Type="HumanManagementDBModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.OVERTIME" Role="OVERTIME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="OVERTIME">
+        <PropertyRef Name="overtime_emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TIMEOFF__timeoff__4F7CD00D">
+    <End Type="HumanManagementDBModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.TIMEOFF" Role="TIMEOFF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="TIMEOFF">
+        <PropertyRef Name="timeoff_emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__WEEKLYSAL__weekl__59FA5E80">
+    <End Type="HumanManagementDBModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.WEEKLYSALARY" Role="WEEKLYSALARY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="WEEKLYSALARY">
+        <PropertyRef Name="weeklysalary_emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__JOB__job_gradelv__3A81B327">
+    <End Type="HumanManagementDBModel.GRADELEVEL" Role="GRADELEVEL" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.JOB" Role="JOB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GRADELEVEL">
+        <PropertyRef Name="gradelevel_id" />
+      </Principal>
+      <Dependent Role="JOB">
+        <PropertyRef Name="job_gradelv_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TIMEOFF__timeoff__5070F446">
+    <End Type="HumanManagementDBModel.REASON_TIMEOFF" Role="REASON_TIMEOFF" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.TIMEOFF" Role="TIMEOFF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REASON_TIMEOFF">
+        <PropertyRef Name="reason_timeoff_id" />
+      </Principal>
+      <Dependent Role="TIMEOFF">
+        <PropertyRef Name="timeoff_res_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TIMEOFF__timeoff__5165187F">
+    <End Type="HumanManagementDBModel.TYPE_TIMEOFF" Role="TYPE_TIMEOFF" Multiplicity="1" />
+    <End Type="HumanManagementDBModel.TIMEOFF" Role="TIMEOFF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TYPE_TIMEOFF">
+        <PropertyRef Name="type_timeoff_id" />
+      </Principal>
+      <Dependent Role="TIMEOFF">
+        <PropertyRef Name="timeoff_tpe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EMP_HAS_SKILL">
+    <End Type="HumanManagementDBModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+    <End Type="HumanManagementDBModel.SKILL" Role="SKILL" Multiplicity="*" />
+  </Association>
+  <Association Name="EMP_WORK_ON_HOLIDAY">
+    <End Type="HumanManagementDBModel.EMPLOYEE" Role="EMPLOYEE" Multiplicity="*" />
+    <End Type="HumanManagementDBModel.HOLIDAYSCHEDULE" Role="HOLIDAYSCHEDULE" Multiplicity="*" />
+  </Association>
+</Schema>

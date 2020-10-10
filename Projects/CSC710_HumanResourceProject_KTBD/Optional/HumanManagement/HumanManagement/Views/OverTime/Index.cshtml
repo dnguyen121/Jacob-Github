@@ -1,0 +1,185 @@
+﻿@using HumanManagement.Models
+@using HumanManagement.Utils
+@model  OverTimeModel
+@{
+    ViewBag.Title = "Overtime";
+}
+@using (Html.BeginForm("Insert", "OverTime", FormMethod.Post, new { @class = "col-12 padding-0" }))
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row mt-4">
+                <div class="col-4">@Html.LabelFor(m => m.OvertimeHours)</div>
+                <div class="col-8">
+                    @Html.TextBoxFor(m => m.OvertimeHours, new { @class = "form-control w-100" })
+                    <div class="small">@Html.ValidationMessageFor(model => model.OvertimeHours, "", new { @class = "text-danger" }) &#160; </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">@Html.LabelFor(m => m.OvertimeComment)</div>
+                <div class="col-8">
+                    @Html.TextAreaFor(m => m.OvertimeComment, new { @class = "form-control w-100" })
+                    <div class="small">@Html.ValidationMessageFor(model => model.OvertimeComment, "", new { @class = "text-danger" }) &#160; </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">@Html.LabelFor(m => m.OvertimeEmpId)</div>
+                <div class="col-8">
+                    @Html.SelectList(q => q.OvertimeEmpId, (object)ViewBag.EmployeeList, "Employee_id", "Employee_name", "form-control w-100")
+                    <div class="small">@Html.ValidationMessageFor(model => model.OvertimeEmpId, "", new { @class = "text-danger" }) &#160; </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            Choose Date:
+            <div class="p-3">
+                @{
+                    var startYear = DateTime.Now.AddMonths(-1);
+                    startYear = new DateTime(startYear.Year, startYear.Month, 1);
+                    <select id="chooseMonth" name="monthYear">
+                        @for (DateTime date = startYear; date <= DateTime.Now; date = date.AddMonths(1))
+                        {
+                            var selected = (startYear.Month == ViewBag.Month && startYear.Year == ViewBag.Year) ? "selected" : "";
+                            <option value="@startYear.ToString("MM/yyyy")" @selected>@startYear.ToString("MMM yyyy")</option>
+                            startYear = startYear.AddMonths(1);
+                        }
+                    </select>
+                }
+            </div>
+            <table class="border table-bordered" id="monthListTB">
+                <thead>
+                    <tr class="text-center">
+                        <th>Su</th>
+                        <th>Mo</th>
+                        <th>Tu</th>
+                        <th>We</th>
+                        <th>Th</th>
+                        <th>Fr</th>
+                        <th>Sa</th>
+                    </tr>
+                </thead>
+                @{
+                    var fromDate = new DateTime(ViewBag.Year, ViewBag.Month, 1);
+                    var toDate = new DateTime(ViewBag.Year, ViewBag.Month
+                        , DateTime.DaysInMonth(DateTime.Now.Year, ViewBag.Month));
+                    bool start = true;
+                    bool end = false;
+                    List<OverTimeModel> overTimes = ViewBag.OverTimes as List<OverTimeModel>;
+                    var loopDate = fromDate;
+                    var currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                    while (!end)
+                    {
+                        <tr class="text-white">
+                            @for (int i = 0; i < 7; i++)
+                            {
+                                if (loopDate > toDate)
+                                {
+                                    end = true;
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    continue;
+                                }
+                                if (start && i < (int)fromDate.DayOfWeek)
+                                {
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                }
+                                if (!start || i >= (int)fromDate.DayOfWeek)
+                                {
+                                    if (overTimes.Any(q => q.OvertimeDate.Day == loopDate.Day))
+                                    {
+                                        var overTime = overTimes.Where(q => q.OvertimeDate.Day == loopDate.Day).First();
+                                        <td class="bg-primary loopInfo">
+                                            @loopDate.Day &nbsp;&nbsp;&nbsp;
+                                            <div class="d-none position-absolute infoDiv bg-white text-black-50">
+                                                <table>
+                                                    <tr>
+                                                        <td>Number of Hourse</td>
+                                                        <td>@overTime.OvertimeHours</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Employee Name</td>
+                                                        <td>@overTime.EmployeeName</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Comment</td>
+                                                        <td>@overTime.OvertimeComment</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        if (loopDate > currentDate)
+                                        {
+                                            <td class="bg-dark">@loopDate.Day &nbsp;&nbsp;&nbsp;</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="bg-secondary change-date pointer" value="@loopDate">@loopDate.Day &nbsp;&nbsp;&nbsp;</td>
+                                        }
+
+                                    }
+                                    loopDate = loopDate.AddDays(1);
+                                }
+                            }
+                        </tr>
+                        start = false;
+                    }
+                }
+            </table>
+            @Html.HiddenFor(q => q.OvertimeDate)
+            <div class="small">@Html.ValidationMessageFor(model => model.OvertimeDate, "", new { @class = "text-danger" }) &#160; </div>
+            <div></div>
+        </div>
+        <div class="col-12 text-right">
+            <button type="submit" class="btn btn-primary">Insert</button>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        
+        $("#chooseMonth,select[name='OvertimeEmpId']").change(function () {
+            // form data
+            var form_data = new FormData();
+            var id = $('select[name="OvertimeEmpId"]').val();
+            form_data.append("employeeId", id);
+            var month = $("#chooseMonth").val();
+            form_data.append("monthYear", month);
+            // ajax submit
+            $.ajax({
+                url: "/OverTime/GetOverTimeForUser",
+                cache: false,
+                contentType: false,
+                processData: false,
+                async: false,
+                data: form_data,
+                type: 'post',
+                success: function (data) {
+                    $("#monthListTB").html(data.Table);
+                    $('input[name="OvertimeDate"]').val('');
+                    ReBindData();
+                }
+            });
+        });
+        function ReBindData() {
+            $(".change-date ").click(function () {
+                var val = $(this).attr('value');
+                $('input[name="OvertimeDate"]').val(val);
+                $(".change-date").removeClass("bg-danger");
+                $(".change-date").addClass("bg-secondary");
+                $(this).addClass("bg-danger");
+                $(this).removeClass("bg-secondary");
+            });
+            $(".loopInfo").mouseenter(function () {
+                $(this).find(".infoDiv").removeClass("d-none");
+            });
+            $(".loopInfo").mouseleave(function () {
+                $(this).find(".infoDiv").addClass("d-none");
+            });
+        }
+        $(document).ready(ReBindData);
+    </script>
+}

@@ -1,0 +1,236 @@
+﻿@using HumanManagement.Models
+@{
+    ViewBag.Title = "Weekly Salary";
+}
+
+
+    <div id="TimeOffPayDialog" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">TimeOff pay</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <table class="table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Number of Hours</th>
+                                <th>Date</th>
+                                <th>Reason</th>
+                                <th>Comment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (TimeOffModel timeOff in ViewBag.TimeOffPayList)
+                            {
+                            <tr>
+                                <td>@timeOff.TimeoffNumberOfHours</td>
+                                <td>@timeOff.TimeoffDate.ToString("dd MMM yyyy")</td>
+                                <td>@timeOff.ReasonName</td>
+                                <td>@timeOff.TimeoffComment</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="TimeOffNoPayDialog" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Timeoff no pay</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <table class="table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Number of Hours</th>
+                                <th>Date</th>
+                                <th>Reason</th>
+                                <th>Comment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (TimeOffModel timeOff in ViewBag.TimeOffNoPayList)
+                            {
+                                <tr>
+                                    <td>@timeOff.TimeoffNumberOfHours</td>
+                                    <td>@timeOff.TimeoffDate</td>
+                                    <td>@timeOff.ReasonName</td>
+                                    <td>@timeOff.TimeoffComment</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="OverTimeDialog" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Skill</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <table class="table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Number of Hours</th>
+                                <th>Date</th>
+                                <th>Reason</th>
+                                <th>Comment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (OverTimeModel overTime in ViewBag.OverTimeList)
+                            {
+                                <tr>
+                                    <td>@overTime.OvertimeHours</td>
+                                    <td>@overTime.OvertimeDate</td>
+                                    <td>@overTime.OvertimeComment</td>
+                                    <td>@overTime.EmployeeName</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">Start Date</div>
+        <div class="col-10">
+            <select class="form-control w-25" id="changeDate">
+                @foreach (string date in ViewBag.StartWeekDates)
+                {
+                    if (date == ViewBag.selectedDate)
+                    {
+                        <option value="@date" selected>@date</option>
+                    }
+                    else
+                    {
+                        <option value="@date">@date</option>
+                    }
+
+                }
+            </select>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div id="canvas-holder" class="col-md-6">
+            <div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+            <canvas id="chart-area" style="display: block; height: 252px; width: 505px;" width="757" height="378" class="chartjs-render-monitor"></canvas>
+        </div>
+    </div>
+	<div class="row justify-content-center">
+        <div class="col-md-6 text-left p-4">
+            <table class="w-100">
+                <tr>
+                    <td>Time Off No Pay</td>
+                    <td>@ViewBag.TimeOffNoPay</td>
+                    <td>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#TimeOffNoPayDialog">Detail</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Time Off Pay</td>
+                    <td>@ViewBag.TimeOffPay</td>
+                    <td>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#TimeOffPayDialog">Detail</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Work Time</td>
+                    <td>@ViewBag.WorkTime</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Over Time</td>
+                    <td>@ViewBag.OverTime</td>
+                    <td>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#OverTimeDialog">Detail</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Salary</td>
+                    <td>@ViewBag.WeeklySalary</td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+	</div>
+@section scripts
+{
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script>
+		$('#changeDate').change(function () {
+			var date = $(this).val();
+			window.location.href = "/weeklysalary/SelectDate?fromDateString=" + date;
+		});
+		window.chartColors = {
+			red: 'rgb(255, 99, 132)',
+			orange: 'rgb(255, 159, 64)',
+			yellow: 'rgb(255, 205, 86)',
+			green: 'rgb(75, 192, 192)',
+			blue: 'rgb(54, 162, 235)',
+			purple: 'rgb(153, 102, 255)',
+			grey: 'rgb(201, 203, 207)'
+		};
+
+		var config = {
+			type: 'pie',
+			data: {
+				datasets: [{
+					data: [
+                        @ViewBag.timeOffNoPayPercent,
+                        @ViewBag.timeOffPayPercent,
+                        @ViewBag.normalPayPercent,
+                        @ViewBag.overTimePayPercent
+					],
+					backgroundColor: [
+						window.chartColors.red,
+						window.chartColors.green,
+						window.chartColors.blue,
+                        window.chartColors.purple
+					],
+					label: 'Dataset 1'
+				}],
+				labels: [
+					'Time off no pay',
+					'Time off pay',
+					'Work time',
+					'Over time'
+				]
+			},
+			options: {
+				responsive: true
+			}
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('chart-area').getContext('2d');
+			window.myPie = new Chart(ctx, config);
+		};
+    </script>
+}

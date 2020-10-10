@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HumanManagementDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BENEFICIARY">
+    <Key>
+      <PropertyRef Name="beneficiary_id" />
+    </Key>
+    <Property Name="beneficiary_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="beneficiary_fName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="beneficiary_lName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="beneficiary_relationship" Type="int" Nullable="false" />
+    <Property Name="beneficiary_contact" Type="char" MaxLength="10" />
+    <Property Name="beneficiary_addressLine" Type="varchar(max)" Nullable="false" />
+    <Property Name="beneficiary_city" Type="varchar(max)" Nullable="false" />
+    <Property Name="beneficiary_state" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="beneficiary_zipCode" Type="char" MaxLength="5" Nullable="false" />
+    <Property Name="beneficiary_country" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="beneficiary_email" Type="varchar" MaxLength="100" />
+    <Property Name="beneficiary_emp_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BONUS">
+    <Key>
+      <PropertyRef Name="bonus_id" />
+    </Key>
+    <Property Name="bonus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bonus_gradelv_id" Type="int" Nullable="false" />
+    <Property Name="bonus_percent" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DEPARTMENT">
+    <Key>
+      <PropertyRef Name="department_id" />
+    </Key>
+    <Property Name="department_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="department_name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EMP_HAS_SKILL">
+    <Key>
+      <PropertyRef Name="emp_id" />
+      <PropertyRef Name="skl_id" />
+    </Key>
+    <Property Name="emp_id" Type="int" Nullable="false" />
+    <Property Name="skl_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EMP_WORK_ON_HOLIDAY">
+    <Key>
+      <PropertyRef Name="emp_id" />
+      <PropertyRef Name="hol_id" />
+    </Key>
+    <Property Name="emp_id" Type="int" Nullable="false" />
+    <Property Name="hol_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EMPLOYEE">
+    <Key>
+      <PropertyRef Name="employee_id" />
+    </Key>
+    <Property Name="employee_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employee_SSN" Type="char" MaxLength="9" Nullable="false" />
+    <Property Name="employee_name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="employee_dob" Type="date" Nullable="false" />
+    <Property Name="employee_sex" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="employee_maritalStatus" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="employee_image" Type="varchar(max)" />
+    <Property Name="employee_phone" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="employee_address" Type="varchar(max)" Nullable="false" />
+    <Property Name="employee_mail" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="employee_hireDate" Type="date" Nullable="false" />
+    <Property Name="employee_superiorName" Type="varchar" MaxLength="100" />
+    <Property Name="employee_balances" Type="int" Nullable="false" />
+    <Property Name="employee_dept_id" Type="int" Nullable="false" />
+    <Property Name="employee_gralv_id" Type="int" Nullable="false" />
+    <Property Name="employee_jb_id" Type="int" Nullable="false" />
+    <Property Name="employee_workstt_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GRADELEVEL">
+    <Key>
+      <PropertyRef Name="gradelevel_id" />
+    </Key>
+    <Property Name="gradelevel_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="gradelevel_payRate" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HOLIDAYSCHEDULE">
+    <Key>
+      <PropertyRef Name="holidayschedule_id" />
+    </Key>
+    <Property Name="holidayschedule_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="holidayschedule_date" Type="date" Nullable="false" />
+    <Property Name="holidayschedule_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="holidayschedule_hours" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JOB">
+    <Key>
+      <PropertyRef Name="job_id" />
+    </Key>
+    <Property Name="job_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="job_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="job_gradelv_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OVERTIME">
+    <Key>
+      <PropertyRef Name="overtime_id" />
+    </Key>
+    <Property Name="overtime_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="overtime_date" Type="date" Nullable="false" />
+    <Property Name="overtime_hours" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+    <Property Name="overtime_comment" Type="varchar(max)" Nullable="false" />
+    <Property Name="overtime_emp_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="REASON_TIMEOFF">
+    <Key>
+      <PropertyRef Name="reason_timeoff_id" />
+    </Key>
+    <Property Name="reason_timeoff_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="reason_timeoff_name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RELATION">
+    <Key>
+      <PropertyRef Name="relation_id" />
+    </Key>
+    <Property Name="relation_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="relation_name" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SKILL">
+    <Key>
+      <PropertyRef Name="skill_id" />
+    </Key>
+    <Property Name="skill_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="skill_name" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="STATES">
+    <Key>
+      <PropertyRef Name="state_code" />
+    </Key>
+    <Property Name="state_code" Type="char" MaxLength="2" Nullable="false" />
+    <Property Name="state_name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TIMEOFF">
+    <Key>
+      <PropertyRef Name="timeoff_id" />
+    </Key>
+    <Property Name="timeoff_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="timeoff_date" Type="date" Nullable="false" />
+    <Property Name="timeoff_numberOfHours" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+    <Property Name="timeoff_res_id" Type="int" Nullable="false" />
+    <Property Name="timeoff_tpe_id" Type="int" Nullable="false" />
+    <Property Name="timeoff_comment" Type="varchar(max)" />
+    <Property Name="timeoff_emp_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TYPE_TIMEOFF">
+    <Key>
+      <PropertyRef Name="type_timeoff_id" />
+    </Key>
+    <Property Name="type_timeoff_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type_timeoff_name" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WEEKLYSALARY">
+    <Key>
+      <PropertyRef Name="weeklysalary_id" />
+    </Key>
+    <Property Name="weeklysalary_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="weeklysalary_startDate" Type="date" Nullable="false" />
+    <Property Name="weeklysalary_endDate" Type="date" Nullable="false" />
+    <Property Name="weeklysalary_hours" Type="int" Nullable="false" />
+    <Property Name="weeklysalary_emp_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WORKINGSTATUS">
+    <Key>
+      <PropertyRef Name="workingstatus_id" />
+    </Key>
+    <Property Name="workingstatus_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="workingstatus_name" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__BENEFICIA__benef__6754599E">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="BENEFICIARY" Type="Self.BENEFICIARY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="BENEFICIARY">
+        <PropertyRef Name="beneficiary_emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BENEFICIA__benef__68487DD7">
+    <End Role="RELATION" Type="Self.RELATION" Multiplicity="1" />
+    <End Role="BENEFICIARY" Type="Self.BENEFICIARY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RELATION">
+        <PropertyRef Name="relation_id" />
+      </Principal>
+      <Dependent Role="BENEFICIARY">
+        <PropertyRef Name="beneficiary_relationship" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BENEFICIA__benef__693CA210">
+    <End Role="STATES" Type="Self.STATES" Multiplicity="1" />
+    <End Role="BENEFICIARY" Type="Self.BENEFICIARY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="STATES">
+        <PropertyRef Name="state_code" />
+      </Principal>
+      <Dependent Role="BENEFICIARY">
+        <PropertyRef Name="beneficiary_state" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BONUS__bonus_gra__5CD6CB2B">
+    <End Role="GRADELEVEL" Type="Self.GRADELEVEL" Multiplicity="1" />
+    <End Role="BONUS" Type="Self.BONUS" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GRADELEVEL">
+        <PropertyRef Name="gradelevel_id" />
+      </Principal>
+      <Dependent Role="BONUS">
+        <PropertyRef Name="bonus_gradelv_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMP_HAS_S__emp_i__47DBAE45">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="EMP_HAS_SKILL" Type="Self.EMP_HAS_SKILL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="EMP_HAS_SKILL">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMP_HAS_S__skl_i__48CFD27E">
+    <End Role="SKILL" Type="Self.SKILL" Multiplicity="1" />
+    <End Role="EMP_HAS_SKILL" Type="Self.EMP_HAS_SKILL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SKILL">
+        <PropertyRef Name="skill_id" />
+      </Principal>
+      <Dependent Role="EMP_HAS_SKILL">
+        <PropertyRef Name="skl_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMP_WORK___emp_i__5629CD9C">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="EMP_WORK_ON_HOLIDAY" Type="Self.EMP_WORK_ON_HOLIDAY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="EMP_WORK_ON_HOLIDAY">
+        <PropertyRef Name="emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMP_WORK___hol_i__571DF1D5">
+    <End Role="HOLIDAYSCHEDULE" Type="Self.HOLIDAYSCHEDULE" Multiplicity="1" />
+    <End Role="EMP_WORK_ON_HOLIDAY" Type="Self.EMP_WORK_ON_HOLIDAY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOLIDAYSCHEDULE">
+        <PropertyRef Name="holidayschedule_id" />
+      </Principal>
+      <Dependent Role="EMP_WORK_ON_HOLIDAY">
+        <PropertyRef Name="hol_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMPLOYEE__employ__4222D4EF">
+    <End Role="DEPARTMENT" Type="Self.DEPARTMENT" Multiplicity="1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DEPARTMENT">
+        <PropertyRef Name="department_id" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="employee_dept_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMPLOYEE__employ__4316F928">
+    <End Role="GRADELEVEL" Type="Self.GRADELEVEL" Multiplicity="1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GRADELEVEL">
+        <PropertyRef Name="gradelevel_id" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="employee_gralv_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMPLOYEE__employ__440B1D61">
+    <End Role="JOB" Type="Self.JOB" Multiplicity="1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOB">
+        <PropertyRef Name="job_id" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="employee_jb_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__EMPLOYEE__employ__44FF419A">
+    <End Role="WORKINGSTATUS" Type="Self.WORKINGSTATUS" Multiplicity="1" />
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WORKINGSTATUS">
+        <PropertyRef Name="workingstatus_id" />
+      </Principal>
+      <Dependent Role="EMPLOYEE">
+        <PropertyRef Name="employee_workstt_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__JOB__job_gradelv__3A81B327">
+    <End Role="GRADELEVEL" Type="Self.GRADELEVEL" Multiplicity="1" />
+    <End Role="JOB" Type="Self.JOB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GRADELEVEL">
+        <PropertyRef Name="gradelevel_id" />
+      </Principal>
+      <Dependent Role="JOB">
+        <PropertyRef Name="job_gradelv_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OVERTIME__overti__5FB337D6">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="OVERTIME" Type="Self.OVERTIME" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="OVERTIME">
+        <PropertyRef Name="overtime_emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TIMEOFF__timeoff__4F7CD00D">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="TIMEOFF" Type="Self.TIMEOFF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="TIMEOFF">
+        <PropertyRef Name="timeoff_emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TIMEOFF__timeoff__5070F446">
+    <End Role="REASON_TIMEOFF" Type="Self.REASON_TIMEOFF" Multiplicity="1" />
+    <End Role="TIMEOFF" Type="Self.TIMEOFF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="REASON_TIMEOFF">
+        <PropertyRef Name="reason_timeoff_id" />
+      </Principal>
+      <Dependent Role="TIMEOFF">
+        <PropertyRef Name="timeoff_res_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TIMEOFF__timeoff__5165187F">
+    <End Role="TYPE_TIMEOFF" Type="Self.TYPE_TIMEOFF" Multiplicity="1" />
+    <End Role="TIMEOFF" Type="Self.TIMEOFF" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TYPE_TIMEOFF">
+        <PropertyRef Name="type_timeoff_id" />
+      </Principal>
+      <Dependent Role="TIMEOFF">
+        <PropertyRef Name="timeoff_tpe_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__WEEKLYSAL__weekl__59FA5E80">
+    <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="1" />
+    <End Role="WEEKLYSALARY" Type="Self.WEEKLYSALARY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EMPLOYEE">
+        <PropertyRef Name="employee_id" />
+      </Principal>
+      <Dependent Role="WEEKLYSALARY">
+        <PropertyRef Name="weeklysalary_emp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HumanManagementDBModelStoreContainer">
+    <EntitySet Name="BENEFICIARY" EntityType="Self.BENEFICIARY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BONUS" EntityType="Self.BONUS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DEPARTMENT" EntityType="Self.DEPARTMENT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMP_HAS_SKILL" EntityType="Self.EMP_HAS_SKILL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMP_WORK_ON_HOLIDAY" EntityType="Self.EMP_WORK_ON_HOLIDAY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GRADELEVEL" EntityType="Self.GRADELEVEL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HOLIDAYSCHEDULE" EntityType="Self.HOLIDAYSCHEDULE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JOB" EntityType="Self.JOB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OVERTIME" EntityType="Self.OVERTIME" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REASON_TIMEOFF" EntityType="Self.REASON_TIMEOFF" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RELATION" EntityType="Self.RELATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SKILL" EntityType="Self.SKILL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STATES" EntityType="Self.STATES" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TIMEOFF" EntityType="Self.TIMEOFF" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TYPE_TIMEOFF" EntityType="Self.TYPE_TIMEOFF" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WEEKLYSALARY" EntityType="Self.WEEKLYSALARY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WORKINGSTATUS" EntityType="Self.WORKINGSTATUS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__BENEFICIA__benef__6754599E" Association="Self.FK__BENEFICIA__benef__6754599E">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="BENEFICIARY" EntitySet="BENEFICIARY" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BENEFICIA__benef__68487DD7" Association="Self.FK__BENEFICIA__benef__68487DD7">
+      <End Role="RELATION" EntitySet="RELATION" />
+      <End Role="BENEFICIARY" EntitySet="BENEFICIARY" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BENEFICIA__benef__693CA210" Association="Self.FK__BENEFICIA__benef__693CA210">
+      <End Role="STATES" EntitySet="STATES" />
+      <End Role="BENEFICIARY" EntitySet="BENEFICIARY" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BONUS__bonus_gra__5CD6CB2B" Association="Self.FK__BONUS__bonus_gra__5CD6CB2B">
+      <End Role="GRADELEVEL" EntitySet="GRADELEVEL" />
+      <End Role="BONUS" EntitySet="BONUS" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMP_HAS_S__emp_i__47DBAE45" Association="Self.FK__EMP_HAS_S__emp_i__47DBAE45">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="EMP_HAS_SKILL" EntitySet="EMP_HAS_SKILL" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMP_HAS_S__skl_i__48CFD27E" Association="Self.FK__EMP_HAS_S__skl_i__48CFD27E">
+      <End Role="SKILL" EntitySet="SKILL" />
+      <End Role="EMP_HAS_SKILL" EntitySet="EMP_HAS_SKILL" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMP_WORK___emp_i__5629CD9C" Association="Self.FK__EMP_WORK___emp_i__5629CD9C">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="EMP_WORK_ON_HOLIDAY" EntitySet="EMP_WORK_ON_HOLIDAY" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMP_WORK___hol_i__571DF1D5" Association="Self.FK__EMP_WORK___hol_i__571DF1D5">
+      <End Role="HOLIDAYSCHEDULE" EntitySet="HOLIDAYSCHEDULE" />
+      <End Role="EMP_WORK_ON_HOLIDAY" EntitySet="EMP_WORK_ON_HOLIDAY" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMPLOYEE__employ__4222D4EF" Association="Self.FK__EMPLOYEE__employ__4222D4EF">
+      <End Role="DEPARTMENT" EntitySet="DEPARTMENT" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMPLOYEE__employ__4316F928" Association="Self.FK__EMPLOYEE__employ__4316F928">
+      <End Role="GRADELEVEL" EntitySet="GRADELEVEL" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMPLOYEE__employ__440B1D61" Association="Self.FK__EMPLOYEE__employ__440B1D61">
+      <End Role="JOB" EntitySet="JOB" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__EMPLOYEE__employ__44FF419A" Association="Self.FK__EMPLOYEE__employ__44FF419A">
+      <End Role="WORKINGSTATUS" EntitySet="WORKINGSTATUS" />
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__JOB__job_gradelv__3A81B327" Association="Self.FK__JOB__job_gradelv__3A81B327">
+      <End Role="GRADELEVEL" EntitySet="GRADELEVEL" />
+      <End Role="JOB" EntitySet="JOB" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OVERTIME__overti__5FB337D6" Association="Self.FK__OVERTIME__overti__5FB337D6">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="OVERTIME" EntitySet="OVERTIME" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TIMEOFF__timeoff__4F7CD00D" Association="Self.FK__TIMEOFF__timeoff__4F7CD00D">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="TIMEOFF" EntitySet="TIMEOFF" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TIMEOFF__timeoff__5070F446" Association="Self.FK__TIMEOFF__timeoff__5070F446">
+      <End Role="REASON_TIMEOFF" EntitySet="REASON_TIMEOFF" />
+      <End Role="TIMEOFF" EntitySet="TIMEOFF" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TIMEOFF__timeoff__5165187F" Association="Self.FK__TIMEOFF__timeoff__5165187F">
+      <End Role="TYPE_TIMEOFF" EntitySet="TYPE_TIMEOFF" />
+      <End Role="TIMEOFF" EntitySet="TIMEOFF" />
+    </AssociationSet>
+    <AssociationSet Name="FK__WEEKLYSAL__weekl__59FA5E80" Association="Self.FK__WEEKLYSAL__weekl__59FA5E80">
+      <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+      <End Role="WEEKLYSALARY" EntitySet="WEEKLYSALARY" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

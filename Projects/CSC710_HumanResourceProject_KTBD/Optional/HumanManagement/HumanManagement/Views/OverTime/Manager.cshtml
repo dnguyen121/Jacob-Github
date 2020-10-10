@@ -1,0 +1,54 @@
+﻿@using HumanManagement.Models
+
+@{
+    ViewBag.Title = "Overtime";
+}
+
+<h2>@ViewBag.Title</h2>
+<div class="w-100 text-right mb-3">
+    <a href="~/OverTime/Index" class="btn btn-primary">Insert</a> 
+</div>
+<table class="w-100 table-bordered">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Hours</td>
+            <td>Date</td>
+            <td>Comment</td>
+            <td>Employee Name</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (OverTimeModel overtime in ViewBag.List)
+        {
+        <tr>
+            <td>@overtime.OvertimeId</td>
+            <td>@overtime.OvertimeHours</td>
+            <td>@overtime.OvertimeDate</td>
+            <td>@overtime.OvertimeComment</td>
+            <td>@overtime.EmployeeName</td>
+        </tr>
+        }
+    </tbody>
+</table>
+<div class="w-100 text-center m-3">
+    @{
+        DateTime fromDate = new DateTime(DateTime.Now.Year, 1, 1);
+        for (DateTime date = fromDate; date <= DateTime.Now; date = date.AddMonths(1))
+        {
+            if (ViewBag.Month == date.Month && ViewBag.Year == date.Year)
+            {
+                <a href="#" class="btn btn-secondary">
+                    @date.Month/@date.Year
+                </a>
+            }
+            else
+            {
+                <a href="~/OverTime/Manager?month=@date.Month&year=@date.Year" class="btn btn-primary">
+                    @date.Month/@date.Year
+                </a>
+            }
+        }
+    }
+</div>
+

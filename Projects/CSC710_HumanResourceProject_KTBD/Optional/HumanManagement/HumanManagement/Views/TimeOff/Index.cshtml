@@ -1,0 +1,173 @@
+﻿@using HumanManagement.Models
+@using Newtonsoft.Json
+@model TimeOffModel
+@{
+    ViewBag.Title = "Time Off";
+}
+@using (Html.BeginForm("Insert", "TimeOff", FormMethod.Post, new { @class = "col-12 padding-0" }))
+{
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Balances @ViewBag.Balances hours</h4>
+            <div class="form-group row mt-4">
+                <div class="col-4">@Html.LabelFor(m => m.TimeoffNumberOfHours)</div>
+                <div class="col-8">
+                    @Html.TextBoxFor(m => m.TimeoffNumberOfHours, new { @class = "form-control w-100" })
+                    <div class="small">@Html.ValidationMessageFor(model => model.TimeoffNumberOfHours, "", new { @class = "text-danger" }) &#160; </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">@Html.LabelFor(m => m.TimeoffResId)</div>
+                <div class="col-8">
+                    <select name="TimeoffResId" class="slim-font form-control">
+                        @foreach (ResonTimeOffModel reason in ViewBag.ReasonList)
+                        {
+                            string selected = (Model != null && Model.TimeoffResId == reason.ReasonTimeoffId) ? "selected" : "";
+                            <option value="@reason.ReasonTimeoffId" @selected accept="@reason.AcceptPayType">@reason.ReasonTimeoffName</option>
+                        }
+                    </select>
+                    <div class="small">@Html.ValidationMessageFor(model => model.TimeoffResId, "", new { @class = "text-danger" }) &#160; </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">@Html.LabelFor(m => m.TimeoffComment)</div>
+                <div class="col-8">
+                    @Html.TextAreaFor(m => m.TimeoffComment, new { @class = "form-control w-100" })
+                    <div class="small">@Html.ValidationMessageFor(model => model.TimeoffComment, "", new { @class = "text-danger" }) &#160; </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            Choose Date:
+            <div class="p-3">
+                @{
+                    var startYear = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                    <select id="chooseMonth" name="monthYear">
+                        @for (int i = 0; i < 3; i++)
+                        {
+                            var selected = (startYear.Month == ViewBag.Month && startYear.Year == ViewBag.Year) ? "selected" : "";
+                            <option value="@startYear.ToString("MM/yyyy")" @selected>@startYear.ToString("MMM yyyy")</option>
+                            startYear = startYear.AddMonths(1);
+                        }
+                    </select>
+                }
+            </div>
+            <table class="border table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th>Su</th>
+                        <th>Mo</th>
+                        <th>Tu</th>
+                        <th>We</th>
+                        <th>Th</th>
+                        <th>Fr</th>
+                        <th>Sa</th>
+                    </tr>
+                </thead>
+                @{
+                    var fromDate = new DateTime(DateTime.Now.Year, ViewBag.Month, 1);
+                    var toDate = new DateTime(DateTime.Now.Year, ViewBag.Month
+                        , DateTime.DaysInMonth(DateTime.Now.Year, ViewBag.Month));
+                    bool start = true;
+                    bool end = false;
+                    List<TimeOffModel> timeOffs = ViewBag.ListInMonth as List<TimeOffModel>;
+                    var loopDate = fromDate;
+                    var currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+                    while (!end)
+                    {
+                        <tr class="text-white">
+                            @for (int i = 0; i < 7; i++)
+                            {
+                                if (loopDate > toDate)
+                                {
+                                    end = true;
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    continue;
+                                }
+                                if (start && i < (int)fromDate.DayOfWeek)
+                                {
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                }
+                                if (!start || i >= (int)fromDate.DayOfWeek)
+                                {
+                                    if (timeOffs.Any(q => q.TimeoffDate.Day == loopDate.Day))
+                                    {
+                                        var timeOff = timeOffs.Where(q => q.TimeoffDate.Day == loopDate.Day).First();
+                                        <td class="bg-primary loopInfo">
+                                            @loopDate.Day &nbsp;&nbsp;&nbsp;
+                                            <div class="d-none position-absolute infoDiv bg-white text-black-50">
+                                                <table>
+                                                    <tr>
+                                                        <td>Number of Hourse</td>
+                                                        <td>@timeOff.TimeoffNumberOfHours</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Reason</td>
+                                                        <td>@timeOff.ReasonName</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Type</td>
+                                                        <td>@timeOff.TypeName</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Comment</td>
+                                                        <td>@timeOff.TimeoffComment</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        if (loopDate < currentDate)
+                                        {
+                                            <td class="bg-dark">@loopDate.Day &nbsp;&nbsp;&nbsp;</td>
+                                        }
+                                        else
+                                        {
+                                            <td class="bg-secondary change-date" value="@loopDate">@loopDate.Day &nbsp;&nbsp;&nbsp;</td>
+                                        }
+
+                                    }
+                                    loopDate = loopDate.AddDays(1);
+                                }
+                            }
+                        </tr>
+                        start = false;
+                    }
+                }
+            </table>
+            @Html.HiddenFor(q => q.TimeoffDate)
+            <div class="small">@Html.ValidationMessageFor(model => model.TimeoffDate, "", new { @class = "text-danger" }) &#160; </div>
+            <div></div>
+        </div>
+        <div class="col-12 text-right">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+}
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script>
+        $(".loopInfo").mouseenter(function () {
+            $(this).find(".infoDiv").removeClass("d-none");
+        });
+        $(".loopInfo").mouseleave(function () {
+            $(this).find(".infoDiv").addClass("d-none");
+        });
+        $("#chooseMonth").change(function () {
+            var form = $("form");
+            form.attr("action", "/TimeOff/ChangeMonth");
+            form.submit();
+        });
+        $(".change-date").click(function () {
+            var val = $(this).attr('value');
+            $('input[name="TimeoffDate"]').val(val);
+            $(".change-date").removeClass("bg-danger");
+            $(".change-date").addClass("bg-secondary");
+            $(this).addClass("bg-danger");
+            $(this).removeClass("bg-secondary");
+        });
+        </script>
+    }

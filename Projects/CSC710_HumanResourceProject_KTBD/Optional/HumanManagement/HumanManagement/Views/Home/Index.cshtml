@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5 mt-5 mb-5">
+            <div class="row border shadow-sm p-2">
+                <div class="col-12">
+                    <div class="row border-bottom">
+                        <div class="fa fa-3x fa-puzzle-piece text-site col-2"></div>
+                        <div class="col-10">
+                            <div class="font-weight-bold">Application</div>
+                            @if (User.IsInRole("admin"))
+                            {
+                                <div class="small">9 items</div>
+                            } 
+                            @if (!User.IsInRole("admin"))
+                            {
+                                <div class="small">7 items</div>
+                            }                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 mb-2">
+                    <div class="row">
+                        @if (User.IsInRole("admin"))
+                        {
+                            <div class="col-4 text-center mt-3">
+                                <a href="~/Employee/manager" class="d-block text-black-50">
+                                    <div class="fa fa-2x fa-user-secret text-site"></div>
+                                    <div class="small">HR Management</div>
+                                </a>
+                            </div>
+                            <div class="col-4 text-center mt-3">
+                                <a href="~/Overtime/manager" class="d-block text-black-50">
+                                    <div class="fa fa-2x fa-clock-o text-site"></div>
+                                    <div class="small">Overtime</div>
+                                </a>
+                            </div>
+                        }
+                        <div class="col-4 text-center mt-3">
+                            <a href="~/Employee/Index" class="d-block text-black-50">
+                                <div class="fa fa-2x fa-user-circle text-site"></div>
+                                <div class="small">Personal Infomation</div>
+                            </a>
+                        </div>
+                        <div class="col-4 text-center mt-3">
+                            <a href="~/Career/Index" class="d-block text-black-50">
+                                <div class="fa fa-2x fa-building text-site"></div>
+                                <div class="small">Career</div>
+                            </a>
+                        </div>
+                        <div class="col-4 text-center mt-3">
+                            <a href="~/WeeklySalary/Index" class="d-block text-black-50">
+                                <div class="fa fa-2x fa-money text-site"></div>
+                                <div class="small">Week Salary</div>
+                            </a>
+                        </div>
+                        <div class="col-4 text-center mt-3">
+                            <a href="~/TimeOff/Index" class="d-block text-black-50">
+                                <div class="fa fa-2x fa-bed text-site"></div>
+                                <div class="small">Time Off</div>
+                            </a>
+                        </div>
+                        <div class="col-4 text-center mt-3">
+                            <a href="~/Origization/Index" class="d-block text-black-50">
+                                <div class="fa fa-2x fa-sitemap text-site"></div>
+                                <div class="small">Organization</div>
+                            </a>
+                        </div>
+                        <div class="col-4 text-center mt-3">
+                            <a href="~/Beneficiary/Index" class="d-block text-black-50">
+                                <div class="fa fa-2x fa-group text-site"></div>
+                                <div class="small">Relationship</div>
+                            </a>
+                        </div>
+                        <div class="col-4 text-center mt-3">
+                            <a href="~/Manage/ChangePassword" class="d-block text-black-50">
+                                <div class="fa fa-2x fa-cogs text-site"></div>
+                                <div class="small">Setting</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

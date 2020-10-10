@@ -1,0 +1,113 @@
+﻿@using HumanManagement.Models;
+@{
+    ViewBag.Title = "Personal Information";
+    EmployeeModel employee = ViewBag.employee;
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 p-4 p-4 border shadow">
+        <h1 class="text-center mb-5">
+            @ViewBag.Title
+        </h1>
+        <table class="w-100">
+            <tr>
+                <td colspan="2">
+                    <h3>Persional</h3>
+                </td>
+                <td rowspan="5" class="text-center w-25">
+                    <img src="@employee.Employee_image" id="user-img" style="width: 100px; height: 100px; object-fit:cover" class="rounded-circle" />
+                </td>
+            </tr>
+            <tr>
+                <th>ID</th>
+                <td>@employee.Employee_id</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>@employee.Employee_name</td>
+            </tr>
+            <tr>
+                <th>Date of birth</th>
+                <td>@employee.Employee_dob.ToString("MMM dd, yyyy")</td>
+            </tr>
+            <tr>
+                <th>Sex</th>
+                <td>@employee.Employee_sex</td>
+            </tr>
+            <tr>
+                <th>Marital Status</th>
+                <td>@employee.Employee_maritalStatus</td>
+                <td class="text-center">
+                    <button class="btn btn-primary fa fa-edit" id="upload-image"></button>
+                    <form action="~/Employee/UploadImage" enctype="multipart/form-data">
+                        <input type="file" class="d-none" id="image" />
+                    </form>
+                </td>
+            </tr>
+
+            <tr>
+                <th colspan="3">
+                    <h3>Contact</h3>
+                </th>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td colspan="2">@employee.Employee_phone</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td colspan="2">@employee.Employee_address</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td colspan="2">@employee.Employee_mail</td>
+            </tr>
+        </table>
+    </div>
+</div>
+@section scripts {
+    <script>
+        function UploadImage($img, form_data) {
+            $.ajax({
+                url: '/Employee/UploadImage',
+                cache: false,
+                contentType: false,
+                processData: false,
+                async: false,
+                data: form_data,
+                type: 'post',
+                success: function (data) {
+                    if (data.result == 1) {
+                        $img.attr("src", data.message);
+                        $img.css("opacity", 1);
+                    } else {
+                        alert(data.message);
+                    }
+                }
+            });
+        }
+
+        $("#upload-image").click(function () {
+            $("#image").trigger("click");
+        });
+
+        $("#image").on("change", function (evt) {
+            var tgt = evt.target || window.event.srcElement, files = tgt.files;
+
+            var $img = $("#user-img");
+            // FileReader support
+            if (FileReader && files && files.length) {
+                var fr = new FileReader();
+                fr.onload = function (e) {
+                    var form_data = new FormData();
+                    var file_data = $("#image").prop("files")[0];
+                    form_data.append("file", file_data);
+                    form_data.append("Employee_id", "@employee.Employee_id");
+                    UploadImage($img, form_data);
+                }
+                fr.readAsDataURL(files[0]);
+            }
+        });
+    </script>
+}
+

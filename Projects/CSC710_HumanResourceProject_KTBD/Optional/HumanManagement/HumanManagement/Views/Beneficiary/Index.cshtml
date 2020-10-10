@@ -1,0 +1,66 @@
+﻿@using HumanManagement.Models;
+@{
+    ViewBag.Title = "Relationship";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-right">
+            <a href="~/Beneficiary/Insert" class="btn btn-primary">
+                <span class="fa fa-plus-circle"></span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (BeneficiaryModel item in ViewBag.List)
+        {
+            <div class="col-4 border shadow m-3 p-3">
+                <table class="w-100">
+                    <tr>
+                        <td>Name</td>
+                        <td>@item.BeneficiaryFName @item.BeneficiaryLName</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td>@item.BeneficiaryContact</td>
+                    </tr>
+                    <tr>
+                        <td>Relationship</td>
+                        <td>@item.RelationShipName</td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td>@item.BeneficiaryEmail</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>@item.BeneficiaryAddress</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="~/Beneficiary/Edit?id=@item.BeneficiaryId" class="btn btn-primary">
+                                <span class="fa fa-edit"></span>
+                            </a>
+                        </td>
+                        <td class="text-right">
+                            <button href="~/Beneficiary/Delete?id=@item.BeneficiaryId" class="btn btn-primary edit">
+                                <span class="fa fa-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+@section scripts 
+{
+    <script>
+        $(".edit").click(function () {
+            var ok = confirm("Are you delete?");
+            if (ok) {
+                window.location.href = $(this).attr("href");
+            }
+        });
+    </script>
+}

@@ -1,0 +1,134 @@
+﻿@using HumanManagement.Models
+@model EmployeeModel
+@using HumanManagement.Utils
+
+@{
+    ViewBag.Title = "Create Employee";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 border shadow">
+        <div class="p-2 bg-site mt-2 mb-4">
+            <h2 class="text-center text-white">@ViewBag.Title</h2>
+        </div>
+        <div class="row">
+            @using (Html.BeginForm("Insert", "Employee", FormMethod.Post, new { @class = "col-12 padding-0", enctype = "multipart/form-data" }))
+            {
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_SSN)</div>
+                    <div class="col-8">
+                        @Html.TextBoxFor(m => m.Employee_SSN, new { @class = "form-control w-100" })
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_SSN, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_name)</div>
+                    <div class="col-8">
+                        @Html.TextBoxFor(m => m.Employee_name, new { @class = "form-control w-100" })
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_name, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_dob) (MM/DD/YYYY)</div>
+                    <div class="col-8">
+                        @Html.TextBoxFor(m => m.Employee_dob, new { @class = "form-control w-100" })
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_dob, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_sex)</div>
+                    <div class="col-8">
+                        @Html.SelectList(m => m.Employee_sex, (object)ViewBag.SexOptions, "Value", "Value", "form-control w-100")
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_sex, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_maritalStatus)</div>
+                    <div class="col-8">
+                        @Html.SelectList(m => m.Employee_maritalStatus, (object)ViewBag.MarialStatusOptions, "Value", "Value", "form-control w-100")
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_maritalStatus, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">Image</div>
+                    <div class="col-8">
+                        <input type="file" name="UploadImage" class="form-control" />
+                        @Html.HiddenFor(q => q.Employee_image)
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_image, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_phone)</div>
+                    <div class="col-8">
+                        @Html.TextBoxFor(m => m.Employee_phone, new { @class = "form-control w-100" })
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_phone, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_address)</div>
+                    <div class="col-8">
+                        @Html.TextBoxFor(m => m.Employee_address, new { @class = "form-control w-100" })
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_address, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_mail)</div>
+                    <div class="col-8">
+                        @Html.TextBoxFor(m => m.Employee_mail, new { @class = "form-control w-100" })
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_mail, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_hireDate) (MM/DD/YYYY)</div>
+                    <div class="col-8">
+                        @Html.TextBoxFor(m => m.Employee_hireDate, new { @class = "form-control w-100" })
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_hireDate, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_superiorName)</div>
+                    <div class="col-8">
+                        @Html.SelectList(m => m.Employee_superiorName, (object)ViewBag.SuperiorNameOptions, "Value", "Value", "form-control w-100")
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_superiorName, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_dept_id)</div>
+                    <div class="col-8">
+                        @Html.SelectList(m => m.Employee_dept_id, (object)ViewBag.DeparmentOptions, "Value", "Display", "form-control w-100")
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_dept_id, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_gralv_id)</div>
+                    <div class="col-8">
+                        @Html.SelectList(m => m.Employee_gralv_id, (object)ViewBag.GradeLevelOptions, "Value", "Display", "form-control w-100")
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_gralv_id, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_jb_id)</div>
+                    <div class="col-8">
+                        @Html.SelectList(m => m.Employee_jb_id, (object)ViewBag.JobOptions, "Value", "Display", "form-control w-100")
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_jb_id, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-4">@Html.LabelFor(m => m.Employee_workstt_id)</div>
+                    <div class="col-8">
+                        @Html.SelectList(m => m.Employee_workstt_id, (object)ViewBag.WorkingStatusOptions, "Value", "Display", "form-control w-100")
+                        <div class="small">@Html.ValidationMessageFor(model => model.Employee_workstt_id, "", new { @class = "text-danger" }) &#160; </div>
+                    </div>
+                </div>
+                <div class="form-group row justify-content-end pr-4 pt-4">
+                    <input type="submit" class="btn bg-site text-white rounded-0" value="Create" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

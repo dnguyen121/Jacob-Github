@@ -1,0 +1,167 @@
+﻿@using HumanManagement.Models
+@using Newtonsoft.Json
+@{
+    ViewBag.Title = "Career";
+    var employee = ViewBag.employee;
+}
+
+<div id="AddSkillDialog" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Skill</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <select name="skillid" id="addSkillSelect" class="form-control">
+                    @foreach (SkillModel skill in ViewBag.ExSkills)
+                    {
+                        <option value="@skill.SkillId">@skill.SkillName</option>
+                    }
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" id="AddSkill" data-dismiss="modal">Add</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <h1 class="text-center mb-5">
+            @ViewBag.Title
+        </h1>
+        <table class="w-100">
+            <tr>
+                <th>Department</th>
+                <td>@employee.DeptName</td>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <td>@employee.Job</td>
+            </tr>
+            <tr>
+                <th>Working status</th>
+                <td>@employee.WorkingStatus</td>
+            </tr>
+            <tr>
+                <th>Hire Date</th>
+                <td>@employee.Employee_hireDate.ToString("MMM dd, yyyy")</td>
+            </tr>
+            <tr>
+                <th>Manager</th>
+                <td>@employee.Employee_superiorName </td>
+            </tr>
+            <tr>
+                <th>Skill</th>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="w-100 border p-4" style="line-height: 3rem;"> 
+                        <span class="bg-primary p-2 text-white mr-2 skill d-none" id="clone-skill">
+                            <span class="skillName"></span>
+                            <span class="fa fa-close pointer deleteSkill"></span>
+                        </span>
+                        @foreach (SkillModel skill in ViewBag.Skills)
+                        {
+                            <span class="bg-primary p-2 text-white mr-2 skill" id="skill-@skill.SkillId">
+                                <span class="skillName">@skill.SkillName</span>
+                                <span class="fa fa-close pointer deleteSkill" value="@skill.SkillId"></span>
+                            </span>
+                        }
+                        <span class="p-2 pl-3 pr-3 text-black-50 ml-2 border pointer" data-toggle="modal" data-target="#AddSkillDialog">
+                            <span class="fa fa-plus"></span>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        var skills = @Html.Raw(JsonConvert.SerializeObject(ViewBag.Skills));
+        var exSkills = @Html.Raw(JsonConvert.SerializeObject(ViewBag.ExSkills));
+
+        function AddSkill() {
+            var options = '';
+            for (var i = 0; i < exSkills.length; i++) {
+                options += "<option value=" + exSkills[i].SkillId + ">" + exSkills[i].SkillName + "</option>";
+            }
+            $("#addSkillSelect").html(options);
+        }
+
+        function DeleteFunc() {
+            var ok = confirm("Are you want to delete?");
+            if (!ok) {
+                return;
+            }
+            var id = $(this).attr('value');
+            var form_data = new FormData();
+            form_data.append("id", id);
+            $.ajax({
+                url: "/Career/delete",
+                cache: false,
+                contentType: false,
+                processData: false,
+                async: false,
+                data: form_data,
+                type: 'post',
+                success: function (data) {
+                    if (data.result) {
+                        skills = data.skills;
+                        exSkills = data.exSkills;
+                        $("#skill-" + data.id).remove();
+                        AddSkill();
+                    } else {
+                        alert(data.Message);
+                    }
+                }
+            });
+        }
+
+        $(".deleteSkill").click(DeleteFunc);
+
+        $("#AddSkill").click(function () {
+            var form_data = new FormData();
+            var id = $("#addSkillSelect").val();
+            form_data.append("skillid", id);
+            $.ajax({
+                url: "/Career/Add",
+                cache: false,
+                contentType: false,
+                processData: false,
+                async: false,
+                data: form_data,
+                type: 'post',
+                success: function (data) {
+                    if (data.result) {
+                        skills = data.skills;
+                        exSkills = data.exSkills;
+
+                        var $cloneSkill = $("#clone-skill");
+                        var $skill = $cloneSkill.first().clone();
+                        $skill.find(".skillName").text(data.name);
+                        $skill.find(".deleteSkill").attr("value", data.id);
+                        $skill.attr("id", "skill-" + data.id);
+                        $skill.removeClass("d-none");
+
+                        $cloneSkill.parent().prepend($skill);
+
+                        $skill.find(".deleteSkill").click(DeleteFunc)
+                        AddSkill();
+                    } else {
+                        alert(data.Message);
+                    }
+                },
+                error: function (data) {
+                    alert(data);
+                }
+            });
+        });
+    </script>
+}

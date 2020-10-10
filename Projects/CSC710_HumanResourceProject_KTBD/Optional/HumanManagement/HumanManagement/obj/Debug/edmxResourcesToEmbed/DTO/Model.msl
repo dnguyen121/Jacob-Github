@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HumanManagementDBModelStoreContainer" CdmEntityContainer="HumanManagementDBEntities">
+    <EntitySetMapping Name="BENEFICIARies">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.BENEFICIARY">
+        <MappingFragment StoreEntitySet="BENEFICIARY">
+          <ScalarProperty Name="beneficiary_emp_id" ColumnName="beneficiary_emp_id" />
+          <ScalarProperty Name="beneficiary_email" ColumnName="beneficiary_email" />
+          <ScalarProperty Name="beneficiary_country" ColumnName="beneficiary_country" />
+          <ScalarProperty Name="beneficiary_zipCode" ColumnName="beneficiary_zipCode" />
+          <ScalarProperty Name="beneficiary_state" ColumnName="beneficiary_state" />
+          <ScalarProperty Name="beneficiary_city" ColumnName="beneficiary_city" />
+          <ScalarProperty Name="beneficiary_addressLine" ColumnName="beneficiary_addressLine" />
+          <ScalarProperty Name="beneficiary_contact" ColumnName="beneficiary_contact" />
+          <ScalarProperty Name="beneficiary_relationship" ColumnName="beneficiary_relationship" />
+          <ScalarProperty Name="beneficiary_lName" ColumnName="beneficiary_lName" />
+          <ScalarProperty Name="beneficiary_fName" ColumnName="beneficiary_fName" />
+          <ScalarProperty Name="beneficiary_id" ColumnName="beneficiary_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BONUS">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.BONU">
+        <MappingFragment StoreEntitySet="BONUS">
+          <ScalarProperty Name="bonus_percent" ColumnName="bonus_percent" />
+          <ScalarProperty Name="bonus_gradelv_id" ColumnName="bonus_gradelv_id" />
+          <ScalarProperty Name="bonus_id" ColumnName="bonus_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DEPARTMENTs">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.DEPARTMENT">
+        <MappingFragment StoreEntitySet="DEPARTMENT">
+          <ScalarProperty Name="department_name" ColumnName="department_name" />
+          <ScalarProperty Name="department_id" ColumnName="department_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EMPLOYEEs">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.EMPLOYEE">
+        <MappingFragment StoreEntitySet="EMPLOYEE">
+          <ScalarProperty Name="employee_workstt_id" ColumnName="employee_workstt_id" />
+          <ScalarProperty Name="employee_jb_id" ColumnName="employee_jb_id" />
+          <ScalarProperty Name="employee_gralv_id" ColumnName="employee_gralv_id" />
+          <ScalarProperty Name="employee_dept_id" ColumnName="employee_dept_id" />
+          <ScalarProperty Name="employee_balances" ColumnName="employee_balances" />
+          <ScalarProperty Name="employee_superiorName" ColumnName="employee_superiorName" />
+          <ScalarProperty Name="employee_hireDate" ColumnName="employee_hireDate" />
+          <ScalarProperty Name="employee_mail" ColumnName="employee_mail" />
+          <ScalarProperty Name="employee_address" ColumnName="employee_address" />
+          <ScalarProperty Name="employee_phone" ColumnName="employee_phone" />
+          <ScalarProperty Name="employee_image" ColumnName="employee_image" />
+          <ScalarProperty Name="employee_maritalStatus" ColumnName="employee_maritalStatus" />
+          <ScalarProperty Name="employee_sex" ColumnName="employee_sex" />
+          <ScalarProperty Name="employee_dob" ColumnName="employee_dob" />
+          <ScalarProperty Name="employee_name" ColumnName="employee_name" />
+          <ScalarProperty Name="employee_SSN" ColumnName="employee_SSN" />
+          <ScalarProperty Name="employee_id" ColumnName="employee_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GRADELEVELs">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.GRADELEVEL">
+        <MappingFragment StoreEntitySet="GRADELEVEL">
+          <ScalarProperty Name="gradelevel_payRate" ColumnName="gradelevel_payRate" />
+          <ScalarProperty Name="gradelevel_id" ColumnName="gradelevel_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HOLIDAYSCHEDULEs">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.HOLIDAYSCHEDULE">
+        <MappingFragment StoreEntitySet="HOLIDAYSCHEDULE">
+          <ScalarProperty Name="holidayschedule_hours" ColumnName="holidayschedule_hours" />
+          <ScalarProperty Name="holidayschedule_name" ColumnName="holidayschedule_name" />
+          <ScalarProperty Name="holidayschedule_date" ColumnName="holidayschedule_date" />
+          <ScalarProperty Name="holidayschedule_id" ColumnName="holidayschedule_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JOBs">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.JOB">
+        <MappingFragment StoreEntitySet="JOB">
+          <ScalarProperty Name="job_gradelv_id" ColumnName="job_gradelv_id" />
+          <ScalarProperty Name="job_name" ColumnName="job_name" />
+          <ScalarProperty Name="job_id" ColumnName="job_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OVERTIMEs">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.OVERTIME">
+        <MappingFragment StoreEntitySet="OVERTIME">
+          <ScalarProperty Name="overtime_emp_id" ColumnName="overtime_emp_id" />
+          <ScalarProperty Name="overtime_comment" ColumnName="overtime_comment" />
+          <ScalarProperty Name="overtime_hours" ColumnName="overtime_hours" />
+          <ScalarProperty Name="overtime_date" ColumnName="overtime_date" />
+          <ScalarProperty Name="overtime_id" ColumnName="overtime_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REASON_TIMEOFF">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.REASON_TIMEOFF">
+        <MappingFragment StoreEntitySet="REASON_TIMEOFF">
+          <ScalarProperty Name="reason_timeoff_name" ColumnName="reason_timeoff_name" />
+          <ScalarProperty Name="reason_timeoff_id" ColumnName="reason_timeoff_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RELATIONs">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.RELATION">
+        <MappingFragment StoreEntitySet="RELATION">
+          <ScalarProperty Name="relation_name" ColumnName="relation_name" />
+          <ScalarProperty Name="relation_id" ColumnName="relation_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SKILLs">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.SKILL">
+        <MappingFragment StoreEntitySet="SKILL">
+          <ScalarProperty Name="skill_name" ColumnName="skill_name" />
+          <ScalarProperty Name="skill_id" ColumnName="skill_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="STATES">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.STATE">
+        <MappingFragment StoreEntitySet="STATES">
+          <ScalarProperty Name="state_name" ColumnName="state_name" />
+          <ScalarProperty Name="state_code" ColumnName="state_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIMEOFFs">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.TIMEOFF">
+        <MappingFragment StoreEntitySet="TIMEOFF">
+          <ScalarProperty Name="timeoff_emp_id" ColumnName="timeoff_emp_id" />
+          <ScalarProperty Name="timeoff_comment" ColumnName="timeoff_comment" />
+          <ScalarProperty Name="timeoff_tpe_id" ColumnName="timeoff_tpe_id" />
+          <ScalarProperty Name="timeoff_res_id" ColumnName="timeoff_res_id" />
+          <ScalarProperty Name="timeoff_numberOfHours" ColumnName="timeoff_numberOfHours" />
+          <ScalarProperty Name="timeoff_date" ColumnName="timeoff_date" />
+          <ScalarProperty Name="timeoff_id" ColumnName="timeoff_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TYPE_TIMEOFF">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.TYPE_TIMEOFF">
+        <MappingFragment StoreEntitySet="TYPE_TIMEOFF">
+          <ScalarProperty Name="type_timeoff_name" ColumnName="type_timeoff_name" />
+          <ScalarProperty Name="type_timeoff_id" ColumnName="type_timeoff_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WEEKLYSALARies">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.WEEKLYSALARY">
+        <MappingFragment StoreEntitySet="WEEKLYSALARY">
+          <ScalarProperty Name="weeklysalary_emp_id" ColumnName="weeklysalary_emp_id" />
+          <ScalarProperty Name="weeklysalary_hours" ColumnName="weeklysalary_hours" />
+          <ScalarProperty Name="weeklysalary_endDate" ColumnName="weeklysalary_endDate" />
+          <ScalarProperty Name="weeklysalary_startDate" ColumnName="weeklysalary_startDate" />
+          <ScalarProperty Name="weeklysalary_id" ColumnName="weeklysalary_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WORKINGSTATUS">
+      <EntityTypeMapping TypeName="HumanManagementDBModel.WORKINGSTATU">
+        <MappingFragment StoreEntitySet="WORKINGSTATUS">
+          <ScalarProperty Name="workingstatus_name" ColumnName="workingstatus_name" />
+          <ScalarProperty Name="workingstatus_id" ColumnName="workingstatus_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="EMP_HAS_SKILL" TypeName="HumanManagementDBModel.EMP_HAS_SKILL" StoreEntitySet="EMP_HAS_SKILL">
+      <EndProperty Name="SKILL">
+        <ScalarProperty Name="skill_id" ColumnName="skl_id" />
+      </EndProperty>
+      <EndProperty Name="EMPLOYEE">
+        <ScalarProperty Name="employee_id" ColumnName="emp_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="EMP_WORK_ON_HOLIDAY" TypeName="HumanManagementDBModel.EMP_WORK_ON_HOLIDAY" StoreEntitySet="EMP_WORK_ON_HOLIDAY">
+      <EndProperty Name="HOLIDAYSCHEDULE">
+        <ScalarProperty Name="holidayschedule_id" ColumnName="hol_id" />
+      </EndProperty>
+      <EndProperty Name="EMPLOYEE">
+        <ScalarProperty Name="employee_id" ColumnName="emp_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

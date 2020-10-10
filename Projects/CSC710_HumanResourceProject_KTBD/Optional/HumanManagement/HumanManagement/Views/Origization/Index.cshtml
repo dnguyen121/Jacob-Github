@@ -1,0 +1,33 @@
+﻿@using HumanManagement.Models;
+@{
+    ViewBag.Title = "Organization";
+}
+
+<div class="w-100 chart" id="organization">
+
+</div>
+@section scripts
+{
+    @Scripts.Render("~/bundles/treant")
+<script>
+        var config = {
+            container: "#organization",
+
+            connectors: {
+                type: 'step'
+            },
+            node: {
+                HTMLclass: 'employee'
+            },
+            img: {
+                HTMLclass: 'rounded-circle'
+            }
+        },
+        @Html.Raw(ViewBag.employeeJson)
+
+        chart_config = [
+            config,@Html.Raw(ViewBag.employeeNames)
+        ];
+        new Treant(chart_config);
+</script>
+}

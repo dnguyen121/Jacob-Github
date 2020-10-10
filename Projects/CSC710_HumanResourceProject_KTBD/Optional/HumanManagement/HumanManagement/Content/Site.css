@@ -1,0 +1,47 @@
+﻿.bg-site {
+    background: #0078B4;
+}
+
+.text-site {
+    color: #0078B4;
+}
+
+body {
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+a, a:hover
+{
+    text-decoration: none;
+}
+
+div.employee {
+    padding: 5px;
+    border: 1px solid #808080;
+    text-align: center;
+}
+
+    div.employee img {
+        object-fit: cover;
+        width: 125px;
+        height: 125px;
+        border-radius: 50%;
+    }
+
+.pointer {
+    cursor: pointer;
+}
