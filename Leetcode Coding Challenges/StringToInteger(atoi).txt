@@ -1,0 +1,37 @@
+class Solution {
+    public int myAtoi(String str) {
+	        str = str.trim();
+	        String example = "+-0123456789";
+            String numbers = "0123456789";
+	        
+	        //when string is empty or contain only letter at the beginning
+	        if(str.length() == 0 || !example.contains(""+str.charAt(0))){
+	            return  0;
+	        }
+
+            String resultString = "" + str.charAt(0);
+            int i = 1;
+            while(i<str.length() && numbers.contains(""+str.charAt(i))){
+                resultString = resultString + ""+str.charAt(i);
+                i++;
+            }
+        
+            //if string contain only + or -
+            if(resultString.length() == 1 && (resultString.charAt(0) == '+' || resultString.charAt(0) == '-')) {
+	        	return 0;
+	        }
+
+            
+            
+            try {
+            	int result = Integer.parseInt(resultString);
+                return result;
+            } catch(Exception e){
+            	if(resultString.charAt(0) == '-') {
+            		return Integer.MIN_VALUE;
+            	}else {
+            		return Integer.MAX_VALUE;
+            	}
+            }
+    }
+}
