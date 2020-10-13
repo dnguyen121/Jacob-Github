@@ -1,0 +1,68 @@
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        int closet = Integer.MAX_VALUE;
+        int sum = 0;
+        int l,r,distance,temp;
+        Arrays.sort(nums);
+        for(int i = 0; i <  nums.length; i++){
+            l = i+1;
+            r=nums.length-1;
+            while(l<r){
+                temp = nums[i]+nums[l]+nums[r];
+                distance = Math.abs(temp-target);
+                closet = Math.min(closet,distance);
+                if(closet == distance){
+                    sum = temp;
+                }
+                if(temp < target){
+                    l++;
+                } else if ( temp > target){
+                    r--;
+                } else {
+                    return sum;
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                // if(r-l == 2){
+                //     temp=nums[i]+nums[l]+nums[r];
+                //     distance = Math.abs(temp-target);
+                //     if(Math.min(distance,closet) == distance){
+                //         closet= distance;
+                //         sum = temp;
+                //     }
+                //     r--;
+                //     continue;
+                // }
+                //     temp=nums[i]+nums[l]+nums[r];
+                //     distance = Math.abs(temp-target);
+                //     if(Math.min(distance,closet) == distance){
+                //         closet= distance;
+                //         sum = temp;
+                //     }
+                //     l++;
+                //     r--;
+            }
+            
+        }
+        return sum;
+    }
+}

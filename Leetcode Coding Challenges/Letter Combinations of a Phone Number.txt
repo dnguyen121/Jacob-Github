@@ -1,0 +1,59 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        
+        //Populate the array
+        char[][] charArray = new char[8][4];
+        int c = 97;
+            for(int i = 0; i < 8; i++){
+                for(int j = 0 ;   j < 3 ; j++){
+                    charArray[i][j] = (char)c;
+                    c++;         
+                }
+                if(i == 5){
+                    charArray[i][3] = (char)c;
+                    c++;
+                }
+            }
+            charArray[7][3] = (char)c;
+            //
+            if(digits.equals("")){
+                return new ArrayList<String>();
+            }
+            List<String> result = listCombination(digits, charArray);
+            return result;
+
+    }
+    
+        public  ArrayList<String> listCombination(String digits, char[][] charArray){
+            int digit;
+            if(digits.length() >1){
+                digit = Integer.parseInt(digits.charAt(0)+"")-2;
+                digits = digits.substring(1);
+            } else if(digits.length() ==1){
+                digit = Integer.parseInt(digits.charAt(0)+"")-2;
+                digits = "";
+            }
+            else {
+                return null;
+            }
+            
+            ArrayList<String> result = new ArrayList<String>();
+            ArrayList<String> temp = new ArrayList<String>();
+            char[] elementArray = charArray[digit];
+            for(int i = 0; i < elementArray.length; i++){
+                if(elementArray[i] >1){
+                    temp = listCombination(digits, charArray);
+                    if(temp == null){
+                        result.add(elementArray[i]+"");
+                        continue;
+                    }
+                    for(int j  = 0; j < temp.size(); j ++){
+                        String strTemp = elementArray[i] + temp.get(j);
+                        temp.set(j,strTemp);
+                    }
+                    result.addAll(temp);
+                }
+            }
+            return result;
+        }
+}

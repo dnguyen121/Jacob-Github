@@ -1,0 +1,44 @@
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        return createParenthesis(n);
+    }
+    public ArrayList<String> createParenthesis(int n){
+        if(n==1){
+            ArrayList<String> temp =  new ArrayList<String>();
+            temp.add("()");
+            return temp;
+        }
+        int inside = 0;
+        int outside = n-1;
+        ArrayList<String> result = new ArrayList<String>();
+        while(outside>=0){
+            if(inside == 0){
+                ArrayList<String> outsideList = createParenthesis(outside);
+                System.out.println(result.toString());
+                for(int i = 0 ; i < outsideList.size(); i++){
+                    result.add("()"+outsideList.get(i));
+                }
+
+            
+            } else if (inside != 0 && outside != 0){
+                ArrayList<String> insideList =  createParenthesis(inside);
+                ArrayList<String> outsideList = createParenthesis(outside);
+                for(int i = 0; i < insideList.size();i++){
+                    for(int j = 0; j<outsideList.size();  j++){
+                        result.add("("+insideList.get(i)+")"+outsideList.get(j));
+                    }
+                }              
+            } else if  (outside == 0){
+                ArrayList<String> insideList = createParenthesis(inside);
+                for(int i = 0 ; i < insideList.size(); i++){
+                    result.add("("+insideList.get(i)+")");
+                }   
+                System.out.println(result.toString());             
+            }
+            inside++;
+            outside--;
+        }
+        return result;
+    }
+    
+}

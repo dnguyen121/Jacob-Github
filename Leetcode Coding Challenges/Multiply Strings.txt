@@ -1,0 +1,99 @@
+class Solution {
+    public String multiply(String num1, String num2) {
+        if(num1.equals("0") || num2.equals("0")){
+            return  "0";
+        }
+        int[] result =  new int[num1.length()+num2.length()];
+        multiply(result,num1,num2,0);
+        String resultString = "";
+        if(result[0] != 0){
+            resultString = resultString + result[0];
+        }
+        for(int i = 1; i  < result.length; i++){
+            resultString = resultString + result[i];
+        }
+        return resultString;
+        
+
+        
+    }
+    
+    
+    public void multiply(int[] result, String num1, String num2,int position){
+        if(position == num2.length()){
+            return;
+        }
+        int cursor = result.length-1-position;
+        int factorNum2 =  num2.charAt(num2.length()-1-position)-'0';
+        int reminder =  0;
+        for(int i = 0; i < num1.length();  i++ ){
+            int factorNum1 = num1.charAt(num1.length()-1-i)-'0';
+            int mediumResult =   factorNum1*factorNum2;
+            int remainder = mediumResult%10;
+            int quotient = mediumResult/10;
+            reminder = quotient;
+            int medium =  result[cursor] +  remainder;
+            result[cursor] = medium%10;
+            result[cursor-1] += (medium/10+quotient);
+            // result[cursor-1] +=quotient;
+            // addIntoResult(result,quotient,remainder,position);
+            cursor--;
+        }
+        System.out.println(Arrays.toString(result));
+        multiply(result,num1,num2,position+1);
+    }
+    
+    public void addIntoResult(int[] result, int quotient, int remainder, int position){
+        
+        int cursor = result.length-1-position;
+        int medium = remainder+result[cursor];
+        remainder = medium%10;
+        result[cursor] = remainder;
+        if(medium < 10){
+            return;
+        }
+        System.out.println(Arrays.toString(result));
+        quotient = quotient+medium/10;
+        addIntoResult(result,quotient/10, quotient%10,position+1);
+        
+        
+        
+            // int medium = result[cursor]+remainder;
+            // result[cursor] = medium%10;
+            // cursor++;
+            // int medium = result[cursor]+quotient+medium/10;
+            // result[cursor] = medium%10;
+            // quotient =  m
+            
+            
+            
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+//     public int stringConvert(String s){
+//         int number = 0;
+//         for(int i = s.length()-1; i >= 0; i--){
+//             int value =  s.charAt(i)-'0';
+//             number += value*Math.pow(10,s.length()-1-i);
+//         }
+//         return number;
+//     }
+    
+//     public String valueConvert(int result){
+//         String number = "0123456789";
+//         String resultString = "";
+//         while(result > 0){
+//             int remainder = result%10;
+//             result = result/10;    
+//             resultString = number.charAt(remainder)+resultString;
+//         }
+//         return resultString;
+        
+//     }
+// }

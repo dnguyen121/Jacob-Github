@@ -1,0 +1,48 @@
+class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        ArrayList<List<String>> result = new ArrayList<List<String>>();
+        for(int i = 0; i< strs.length; i++){
+            if(strs[i] == null){
+                continue;
+            }
+            ArrayList<String> temp = new ArrayList<String>();
+            temp.add(strs[i]);
+            for(int j = i+1; j <strs.length; j++){
+                if(strs[j] == null){
+                    continue;
+                }
+                if(checkAnagram(strs[i],strs[j])){
+                    temp.add(strs[j]);
+                    strs[j] = null;
+                }
+            }
+            result.add(temp);
+        
+        }
+        return result;
+        
+    }
+    
+    public boolean checkAnagram(String s1, String s2){
+        if(s1.length() != s2.length()){
+            return false;
+        }
+        int[] arrayCharacter = new int[26];
+        for(int i = 0; i < s1.length(); i++ ){
+            char currentChar = s1.charAt(i);
+            arrayCharacter[currentChar - 'a']++;
+        }
+        for(int i = 0; i <s2.length(); i++){
+            char currentChar = s2.charAt(i);
+            if(arrayCharacter[currentChar - 'a'] > 0){
+                arrayCharacter[currentChar - 'a']--;
+            } else {
+                return false;
+            }
+        }
+        
+        return true;
+        
+        
+    }
+}

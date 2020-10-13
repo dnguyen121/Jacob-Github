@@ -1,0 +1,16 @@
+class Solution {
+    public void rotate(int[][] matrix) {
+        rotateHelper(matrix,0);
+    }
+    public void rotateHelper(int[][]  matrix, int row){
+        if(row == matrix.length){
+            return;
+        }
+        int[] currentRow = Arrays.copyOf(matrix[row],matrix.length);
+        rotateHelper(matrix,row+1);
+        for(int  i = 0 ; i < matrix.length;i++){
+            matrix[i][matrix.length-1-row] = currentRow[i];
+        }
+        
+    }
+}

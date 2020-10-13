@@ -1,0 +1,119 @@
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        boolean checkRows = checkRows(board);
+        boolean checkColumns = checkColumns(board);
+        // boolean checkLeftDiagonal = checkLeftDiagonal(board);
+        // boolean checkRightDiagonal = checkRightDiagonal(board);
+        boolean checkBigSquares = checkBigSquares(board);
+        // System.out.println(checkRows +" "+ checkColumns+ " " + checkLeftDiagonal+ " " + checkRightDiagonal+ " "+ checkBigSquares);
+        System.out.println(checkRows +" "+ checkColumns+  " "+ checkBigSquares);
+        return checkRows  && checkColumns && checkBigSquares;
+    }
+    
+    
+    public boolean checkBigSquares(char[][] board){
+        //quotient for rows from 0 to 2
+        for(int i = 0; i < 3; i++){
+            boolean[] firstSquare = new boolean[9];
+            boolean[] secondSquare = new boolean[9];
+            boolean[] thirdSquare  = new boolean[9];
+            //remainder for rows for 0 to 2
+            for(int j = 0 ; j < 3; j++){
+                for(int k = 0; k < 9; k++){
+                    int position = board[i*3+j][k]-'1';
+                    if(position >= 0){
+                        if(k < 3){
+                            if(!firstSquare[position]){
+                                firstSquare[position]= true;
+                            }
+                            else {
+                                return false;
+                            }
+                        }
+                        else if(k < 6){
+                            if(!secondSquare[position]){
+                                secondSquare[position]= true;
+                            }
+                            else {
+                                return false;
+                            }
+                        } 
+                        else if(k < 9){
+                            if(!thirdSquare[position]){
+                                thirdSquare[position]= true;
+                            }
+                            else {
+                                return false;
+                            }
+                        }  
+                    }
+                } 
+            }
+        }
+        return true;
+    }
+    
+    public boolean checkRightDiagonal(char[][] board){
+        boolean[] digits = new boolean[9];
+        for(int i = 0; i < board.length; i++){
+            int position = board[i][board.length-1-i] -  '1';
+                if(position >= 0){
+                   if(!digits[position]){
+                       digits[position] = true;
+                    } else {
+                       return false;
+                    }
+                }            
+        }
+        return true;
+    }    
+    
+    public boolean checkLeftDiagonal(char[][] board){
+        boolean[] digits = new boolean[9];
+        for(int i = 0; i < board.length; i++){
+            int position = board[i][i] -  '1';
+                if(position >= 0){
+                   if(!digits[position]){
+                       digits[position] = true;
+                    } else {
+                       return false;
+                    }
+                }            
+        }
+        return true;
+    }
+    
+    public boolean checkRows(char[][] board){
+        for(int i = 0; i < board.length; i++){
+            boolean[] digits = new  boolean[9];
+            for(int j = 0 ; j< board[0].length; j++){
+                int position  = board[i][j] -'1';
+                if(position >= 0){
+                   if(!digits[position]){
+                       digits[position] = true;
+                    } else {
+                       return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    
+    public boolean checkColumns(char[][] board){
+        for(int i = 0; i < board.length; i++){
+            boolean[] digits = new  boolean[9];
+            for(int j = 0 ; j< board[0].length; j++){
+                int position  = board[j][i] -'1';
+                if(position >= 0){
+                   if(!digits[position]){
+                       digits[position] = true;
+                    } else {
+                       return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }    
+}

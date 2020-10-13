@@ -1,0 +1,67 @@
+class Solution {
+    public String intToRoman(int num) {
+        // ArrayList listDigits = new ArrayList<Map<Integer,String>>();
+        // for(int i = 0; i <4; i++){
+        //     listDigits.add(new Map<Intger,String>());
+        // }
+        // Map
+        String[][] arrayDigits = new String[4][3];
+        arrayDigits[0][0] = "I";
+        arrayDigits[0][1] = "V";
+        arrayDigits[0][2] = "X";
+        
+        arrayDigits[1][0] = "X";
+        arrayDigits[1][1] = "L";
+        arrayDigits[1][2] = "C";
+        
+        arrayDigits[2][0] = "C";
+        arrayDigits[2][1] = "D";
+        arrayDigits[2][2] = "M";
+        
+        arrayDigits[3][0] = "M";
+        int i = 0;
+        return intToRomanHelper(num,arrayDigits,i);
+    }
+    
+    public String intToRomanHelper(int num, String[][] arrayDigits, int digitPosition){
+        if(digitPosition == 4){
+            return "";
+        }
+        String str = "";
+        int digit = num%10;
+        num = num/10;
+        if(digit == 0){
+            digitPosition++;
+            return intToRomanHelper(num,arrayDigits,digitPosition) + str;
+        }else {
+            if(digit<=3){
+                while(digit>0){
+                    str =str+arrayDigits[digitPosition][0];
+                    digit--;
+                }
+            }
+            else if (digit == 4){
+                str = arrayDigits[digitPosition][0]+arrayDigits[digitPosition][1];
+            }
+            else if(digit == 5){
+                str = arrayDigits[digitPosition][1];
+            }
+            else if(digit <= 8){
+                str = arrayDigits[digitPosition][1];
+                digit = digit-5;
+                while(digit>0){
+                    str =str+arrayDigits[digitPosition][0];
+                    digit--;
+                }
+            } else if(digit == 9){
+                str = arrayDigits[digitPosition][0]+arrayDigits[digitPosition][2];
+            }
+            digitPosition++;
+                return intToRomanHelper(num,arrayDigits,digitPosition) + str;
+        }
+            
+            
+            
+        }
+    
+}

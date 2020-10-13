@@ -1,0 +1,22 @@
+class Solution {
+    public boolean canJump(int[] nums) {
+        
+        return canJumpHelper(nums,0);
+    }
+    
+    
+    public boolean canJumpHelper(int[] nums, int currentIndex){
+        if(currentIndex >= nums.length-1){
+            return true;
+        }
+        int n = nums[currentIndex];
+        for(int i = n; i > 0; i--){
+            if( canJumpHelper(nums,currentIndex+i)){
+                return true;
+            }
+            
+        }
+        nums[currentIndex] = 0;
+        return false;
+    }
+}

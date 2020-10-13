@@ -1,0 +1,71 @@
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> result = new ArrayList<Integer>();
+        if(matrix.length== 0){
+            return result;
+        }
+        horizontalHelper(1,result, matrix, -1,matrix.length,-1,matrix[0].length);
+        return result;
+    }
+    
+    public void horizontalHelper(int dir, List<Integer> list, int[][] matrix, int topRow, int btmRow, int leftCol, int rightCol){
+
+        if(dir>0){
+            if(leftCol== rightCol-1){
+                return;
+            }            
+            for(int i = leftCol+1; i< rightCol; i++){
+                list.add(matrix[topRow+1][i]);
+                System.out.println(matrix[topRow+1][i]);
+            }
+            
+            verticalHelper(dir,list,matrix,topRow+1,btmRow,leftCol,rightCol);
+            // return;
+        }
+        if(dir < 0){
+            if(rightCol-1 == leftCol){
+                return;
+            }            
+            for(int i = rightCol-1; i > leftCol; i--){
+                list.add(matrix[btmRow-1][i]);
+                System.out.println(matrix[btmRow-1][i]);                
+            }
+            verticalHelper(dir,list,matrix,topRow,btmRow-1,leftCol,rightCol);
+            // return;
+            
+        }
+    }
+    
+    
+    public void verticalHelper(int dir, List<Integer> list, int[][] matrix, int topRow, int btmRow, int leftCol, int rightCol){
+        
+        if(dir>0){
+            if(btmRow-1 == topRow){
+                return;
+            }                
+            for(int j = topRow+1; j < btmRow; j++){
+                list.add(matrix[j][rightCol-1]);
+                System.out.println(matrix[j][rightCol-1]);                   
+            }
+            dir = -1;
+            horizontalHelper(dir,list,matrix,topRow,btmRow,leftCol,rightCol-1);
+            // return;
+        }
+        else{
+            if(btmRow-1 == topRow){
+                System.out.println("Stop");
+                return;
+            }              
+            for(int j = btmRow-1; j > topRow; j--){
+                list.add(matrix[j][leftCol+1]);
+                System.out.println(matrix[j][leftCol+1]);                        
+            }
+            dir = 1;
+            horizontalHelper(dir,list,matrix,topRow,btmRow,leftCol+1,rightCol);
+            // return;
+        }
+        
+    }
+    
+
+}

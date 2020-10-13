@@ -1,0 +1,40 @@
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        HashSet<ArrayList<Integer>> result = new  HashSet<ArrayList<Integer>>();
+        Arrays.sort(candidates);
+        ArrayList<Integer> temp = new ArrayList<Integer>();
+        combinationSumHelper(candidates,target,result,candidates.length-1,temp);
+        List<List<Integer>> resultList = new ArrayList<List<Integer>>(result);
+        return resultList;
+    }
+    
+    public void combinationSumHelper(int[] candidates, int target, HashSet<ArrayList<Integer>> result, int index, ArrayList<Integer> temp){
+        if(index == -1){
+            return;
+        } else {
+            temp.add(candidates[index]);
+            if(sumElements(temp) > target){
+                temp.remove(temp.size()-1);
+                combinationSumHelper(candidates,target,result,index-1,temp);
+            } else if(sumElements(temp) == target){
+                ArrayList<Integer> copy = new ArrayList<Integer>(temp);
+                result.add(copy);
+                System.out.println(result);
+                temp.remove(temp.size()-1);
+                combinationSumHelper(candidates,target,result,index-1,temp);
+            } else if(sumElements(temp) < target){
+                combinationSumHelper(candidates,target,result,index,temp);
+                temp.remove(temp.size()-1);
+                combinationSumHelper(candidates,target,result,index-1,temp);
+            }
+        }
+    }
+    
+    public int sumElements(ArrayList<Integer> list){
+        int sum = 0;
+        for(int i = 0; i < list.size(); i++){
+            sum+=list.get(i);
+        }
+        return sum;
+    }
+}

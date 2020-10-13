@@ -1,0 +1,33 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int position = Arrays.binarySearch(nums,  target);
+        int[] result = {-1,-1};
+        if(position  <0){
+            return result;
+        }else{
+            result[0] = position;
+            result[1] = position;
+            int l = position -1;
+            int r = position+1;
+            while(l>=0){
+                if(nums[l] == target){
+                    result[0] = l;
+                    l--;
+                }else {
+                    break;
+                }
+            }
+            while(r<=nums.length-1){
+                System.out.println(r);
+                if(nums[r] == target){
+                    result[1] = r;
+                    r++;
+                }else {
+                    break;
+                }
+            }
+        }
+        return result;
+
+    }
+}

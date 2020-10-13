@@ -1,0 +1,36 @@
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        LinkedList<List<Integer>> result = new LinkedList<List<Integer>>();
+        LinkedList<Integer> element = new LinkedList<Integer>();
+        if(nums.length == 0){
+            result.add(element);
+            return  result;
+        }
+
+        element.add(nums[nums.length-1]);
+        result.add(element);
+        return permuteHelper(result,nums,nums.length-2);
+    }
+    
+    public LinkedList<List<Integer>> permuteHelper(LinkedList<List<Integer>> temp, int[] nums, int position){
+        if(position == -1){
+            return temp;
+        }else{
+            HashSet<List<Integer>> result = new HashSet<List<Integer>>();
+            for(int i = 0 ; i < temp.size(); i++){
+                for(int j = 0 ; j <=temp.get(i).size(); j++){
+                    LinkedList<Integer> element = new LinkedList<Integer>(temp.get(i));
+                    element.add(j,nums[position]);
+                    result.add(element);
+                }
+            }
+
+            LinkedList<List<Integer>> resultList = new LinkedList<List<Integer>>(result);
+            temp = null;
+            result = null;
+            return permuteHelper(resultList, nums,  position-1);
+        }
+    
+    
+    }
+}

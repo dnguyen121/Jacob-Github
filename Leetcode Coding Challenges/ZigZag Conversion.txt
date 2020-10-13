@@ -1,0 +1,47 @@
+class Solution {
+    public String convert(String s, int numRows) {
+            if(numRows <= 1){
+                return s;
+            }
+	        int upperBound = 0;
+	        int lowerBound = numRows-1;
+	        
+	        String[] str = new String[numRows];
+	        int t = 0;
+	        while(t < str.length){
+	        	str[t] = "";
+	        	t++;
+	        }
+	        
+	        int iter = 0;
+	        boolean sw = true;
+	        int i = 0;
+	        while( i < s.length()){
+	            str[iter] = "" + str[iter]+s.charAt(i);
+	            if(sw){
+	                iter++;
+	            }else{
+	                iter--;
+	            }
+	            
+	            if(iter == upperBound){
+	                sw = true;
+	            }
+	            if(iter == lowerBound){
+	                sw = false;
+	            }
+	            
+	            i++;
+	        }
+	        String result = "";
+	        int k  = 0;
+	        while(k < str.length){
+
+	            result = result+str[k];
+	            k++;
+	        }
+	        return result;
+	        
+	    
+    }
+}
