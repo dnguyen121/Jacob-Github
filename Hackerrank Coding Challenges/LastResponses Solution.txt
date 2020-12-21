@@ -24,7 +24,7 @@ public class Solution {
                 System.out.println(count+ " "+ sumByte);
             }
         }
-            String filenam= "bytes_"+filename;
+            String filenam= "bytes_"+filename; //path of a file
             FileWriter fw = new FileWriter(filenam,true);
             fw.write(count+"\n"+sumByte);
             fw.close();
